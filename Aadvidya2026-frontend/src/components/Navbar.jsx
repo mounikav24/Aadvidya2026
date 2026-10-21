@@ -13,7 +13,7 @@ export default function Navbar() {
 
   const goSection = (id) => {
     setOpen(false)
-    document.body.classList.remove('menu-open') // Re-enable scrolling
+    document.body.classList.remove('menu-open')
     if (location.pathname !== '/') {
       navigate('/')
       setTimeout(() => scrollToId(id), 250)
@@ -24,7 +24,7 @@ export default function Navbar() {
 
   const goPage = (path) => {
     setOpen(false)
-    document.body.classList.remove('menu-open') // Re-enable scrolling
+    document.body.classList.remove('menu-open')
     navigate(path)
     window.scrollTo({ top: 0 })
   }
@@ -33,9 +33,9 @@ export default function Navbar() {
     const newState = !open
     setOpen(newState)
     if (newState) {
-      document.body.classList.add('menu-open') // Disable background scrolling
+      document.body.classList.add('menu-open')
     } else {
-      document.body.classList.remove('menu-open') // Re-enable background scrolling
+      document.body.classList.remove('menu-open')
     }
   }
 
