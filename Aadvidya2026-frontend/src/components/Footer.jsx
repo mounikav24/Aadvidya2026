@@ -29,8 +29,8 @@ export default function Footer() {
           <h5>Contact</h5>
           <ul>
             <li><i className="fas fa-map-marker-alt"></i> MNR Nagar, Fasalwadi Narsapur Road, Sangareddy, Telangana - 502294</li>
-            <li><i className="fas fa-envelope"></i> aadvidya@mnr.edu</li>
-            <li><i className="fas fa-phone"></i> +91 98765 43210</li>
+            <li><i className="fas fa-envelope"></i> aadvidya2026@gmail.com</li>
+            <li><i className="fas fa-phone"></i> +91 xxxxx xxxxx</li>
           </ul>
         </div>
         <div className="footer-col footer-social-col">

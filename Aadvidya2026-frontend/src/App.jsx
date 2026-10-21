@@ -12,6 +12,7 @@ import BackgroundAnimation from './components/BackgroundAnimation'
 import Milestones from './pages/Milestones'
 import Feedback from './pages/Feedback'
 import Guests from './pages/Guests'
+import CustomCursor from './components/CustomCursor'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -19,10 +20,12 @@ function App() {
     const t = setTimeout(() => setLoading(false), 3000)
     return () => clearTimeout(t)
   }, [])
+
   return (
     <Router>
       {loading && <Preloader />}
       <div className={`app-container ${loading ? 'hidden' : ''}`}>
+        <CustomCursor />
         <BackgroundAnimation />
         <Navbar />
         <Routes>

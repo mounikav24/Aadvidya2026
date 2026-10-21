@@ -618,7 +618,7 @@ SECTIONS
 
 .slideshow-track {
   display: flex;
-  transition: transform .6s cubic-bezier(.4,0,.2,1);
+  transition: transform .4s cubic-bezier(.4,0,.2,1);
 }
 
 .slideshow-slide {
@@ -1324,33 +1324,37 @@ RESPONSIVE ADJUSTMENTS
   .navbar-nav {
     display: none;
     position: fixed;
-    top: 70px;
+    top: 0;
     left: 0;
     width: 100%;
-    background: rgba(10, 10, 26, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    height: 100vh;
+    background: #0a0a1a; 
+    z-index: 1001;
     flex-direction: column;
-    padding: 1.5rem 1rem;
-    gap: 1rem;
-    border-bottom: 1px solid rgba(240, 165, 0, 0.15);
-    max-height: calc(100vh - 70px);
-    overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+    backdrop-filter: none; 
+    -webkit-backdrop-filter: none;
   }
   
   .navbar-nav.mobile-open { display: flex; }
   
   .navbar-nav .nav-link {
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding: 0.5rem 0;
     width: 100%;
     text-align: center;
+    color: #fff;
   }
   
   .navbar-nav .btn-register {
-    width: 100%;
+    width: 80%;
+    max-width: 300px;
     text-align: center;
     padding: 0.8rem 1.5rem;
+    margin-top: 1rem;
   }
   
   .footer-container {
@@ -1564,5 +1568,57 @@ html, body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+/* =========================================
+CUSTOM ANIMATED CURSOR (NEW)
+========================================= */
+.custom-cursor-dot,
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #ffd700;
+  box-shadow: 0 0 10px #ffd700, 0 0 20px #f0a500;
+  transition: transform 0.1s ease;
+}
+
+.custom-cursor-ring {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(240, 165, 0, 0.5);
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  animation: cursorPulse 2s ease-in-out infinite;
+}
+
+@keyframes cursorPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.5; }
+}
+
+/* Hover effect for interactive elements */
+.custom-cursor-ring.hovered {
+  width: 60px;
+  height: 60px;
+  background: rgba(240, 165, 0, 0.1);
+  border-color: #ffd700;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+}
+
+/* Hide custom cursor on touch devices */
+@media (pointer: coarse) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
   }
 }

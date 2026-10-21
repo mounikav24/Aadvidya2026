@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+
 const TITLE = 'AADVIDYA'
 
 export default function Hero() {
@@ -9,11 +10,9 @@ export default function Hero() {
     const ctx = canvas.getContext('2d')
     let width, height, raf
     let particles = [], hexes = []
-    let helixBaseY = 0 // New variable to store the dynamic Y position
-
+    let helixBaseY = 0 // Dynamic Y position
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    /* ---------- setup ---------- */
     const initParticles = () => {
       const count = Math.min(70, Math.floor(width / 22))
       particles = Array.from({ length: count }, () => ({
@@ -52,15 +51,12 @@ export default function Hero() {
         // Calculate Y offset: (Zone Top relative to screen) - (Canvas Top relative to screen) + (Half Zone Height)
         helixBaseY = (zoneRect.top - canvasRect.top) + (zoneRect.height / 2)
       } else {
-        // Fallback if div not found
-        helixBaseY = height * 0.8
+        helixBaseY = height * 0.8 // Fallback
       }
-      // ---------------------------------
-
+      
       if (reduceMotion) draw(0)
     }
 
-    /* ---------- layer 1: molecular hexagons ---------- */
     const drawHexes = (t) => {
       hexes.forEach((h) => {
         const cx = h.nx * width
@@ -74,20 +70,19 @@ export default function Hero() {
           i ? ctx.lineTo(px, py) : ctx.moveTo(px, py)
         }
         ctx.closePath()
-        ctx.strokeStyle = 'rgba(230,0,0,0.08)'
+        ctx.strokeStyle = 'rgba(240,165,0,0.08)' // Gold theme
         ctx.lineWidth = 1
         ctx.stroke()
         for (let i = 0; i < 6; i++) {
           const a = rot + (i * Math.PI) / 3
           ctx.beginPath()
           ctx.arc(cx + Math.cos(a) * h.s, cy + Math.sin(a) * h.s, 1.6, 0, Math.PI * 2)
-          ctx.fillStyle = 'rgba(255,70,70,0.25)'
+          ctx.fillStyle = 'rgba(255,215,0,0.25)'
           ctx.fill()
         }
       })
     }
 
-    /* ---------- layer 2: floating ember particles ---------- */
     const drawParticles = (t) => {
       particles.forEach((p) => {
         p.y -= p.speed
@@ -98,17 +93,15 @@ export default function Hero() {
         const twinkle = 0.55 + 0.45 * Math.sin(t * 0.002 + p.tw)
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(255,70,70,${(p.alpha * twinkle).toFixed(3)})`
+        ctx.fillStyle = `rgba(255,215,0,${(p.alpha * twinkle).toFixed(3)})` // Gold particles
         ctx.shadowBlur = 10
-        ctx.shadowColor = 'rgba(255,0,0,0.7)'
+        ctx.shadowColor = 'rgba(240,165,0,0.7)'
         ctx.fill()
         ctx.shadowBlur = 0
       })
     }
 
-    /* ---------- layer 3: rotating DNA double-helix ribbon ---------- */
     const drawHelix = (t) => {
-      // Use the dynamically calculated position
       const baseY = helixBaseY 
       const amp = Math.min(64, height * 0.075)
       const k = 0.014
@@ -120,15 +113,15 @@ export default function Hero() {
         const y1 = baseY + Math.sin(ph) * amp
         const y2 = baseY + Math.sin(ph + Math.PI) * amp
         const g = ctx.createLinearGradient(x, y1, x, y2)
-        g.addColorStop(0, 'rgba(255,90,90,0.28)')
-        g.addColorStop(0.5, 'rgba(230,0,0,0.06)')
-        g.addColorStop(1, 'rgba(255,90,90,0.28)')
+        g.addColorStop(0, 'rgba(255,215,0,0.28)')
+        g.addColorStop(0.5, 'rgba(240,165,0,0.06)')
+        g.addColorStop(1, 'rgba(255,215,0,0.28)')
         ctx.strokeStyle = g
         ctx.lineWidth = 1
         ctx.beginPath(); ctx.moveTo(x, y1); ctx.lineTo(x, y2); ctx.stroke()
       }
 
-      // two glowing strands with pseudo-3D nodes
+      // two glowing strands
       for (let s = 0; s < 2; s++) {
         const off = s * Math.PI
         ctx.beginPath()
@@ -137,10 +130,10 @@ export default function Hero() {
           const y = baseY + Math.sin(ph + off) * amp
           x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)
         }
-        ctx.strokeStyle = s === 0 ? 'rgba(255,60,60,0.55)' : 'rgba(255,130,130,0.35)'
+        ctx.strokeStyle = s === 0 ? 'rgba(255,215,0,0.55)' : 'rgba(240,165,0,0.35)'
         ctx.lineWidth = 2
         ctx.shadowBlur = 14
-        ctx.shadowColor = 'rgba(255,0,0,0.55)'
+        ctx.shadowColor = 'rgba(240,165,0,0.55)'
         ctx.stroke()
         ctx.shadowBlur = 0
 
@@ -152,13 +145,12 @@ export default function Hero() {
           const a = Math.max(0.12, 0.4 + depth * 0.3)
           ctx.beginPath()
           ctx.arc(x, y, r, 0, Math.PI * 2)
-          ctx.fillStyle = `rgba(255,${s === 0 ? 80 : 150},${s === 0 ? 80 : 150},${a.toFixed(3)})`
+          ctx.fillStyle = `rgba(255,${s === 0 ? 215 : 165},${s === 0 ? 0 : 0},${a.toFixed(3)})`
           ctx.fill()
         }
       }
     }
 
-    /* ---------- compose ---------- */
     const draw = (t) => {
       ctx.clearRect(0, 0, width, height)
       drawHexes(t)
@@ -172,7 +164,7 @@ export default function Hero() {
     }
 
     window.addEventListener('resize', resize)
-    resize()
+    resize() // This runs immediately and sets the position
     if (!reduceMotion) raf = requestAnimationFrame(loop)
 
     return () => {
@@ -181,7 +173,6 @@ export default function Hero() {
     }
   }, [])
 
-  // Curved (logo-style) title
   const total = TITLE.length
   const arc = 44
   const stepDeg = arc / (total - 1)
@@ -219,6 +210,7 @@ export default function Hero() {
           </svg>
         </div>
 
+        {/* THIS DIV REPLACES THE <br /> TAGS */}
         <div className="helix-zone"></div>
 
         <div className="hero-buttons">
