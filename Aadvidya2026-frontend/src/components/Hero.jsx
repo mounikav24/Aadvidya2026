@@ -198,7 +198,11 @@ export default function Hero() {
           })}
         </h1>
         
-        <p className="hero-subtitle">MNR Medical College & Hospital</p>
+        {/* Updated subtitle with MNR logo */}
+        <div className="hero-subtitle" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
+          <img src="/mnr-logo.png" alt="MNR Logo" style={{ height: '40px', width: 'auto', maxWidth: '120px' }} />
+          <span>MNR Medical College & Hospital</span>
+        </div>
         
         <div className="highlight-line" role="note">
           <svg className="hl-spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

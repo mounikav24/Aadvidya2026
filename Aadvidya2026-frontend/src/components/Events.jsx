@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
 const activeEvents = [
-  { name: 'SYMPTOMA', sub: 'Case Presentation', desc: 'Present real medical cases with structured diagnosis and treatment plans. A platform to showcase clinical reasoning and communication skills.', icon: 'fa-stethoscope' },
+  { name: 'Symptoma', sub: 'Case Presentation', desc: 'Present real medical cases with structured diagnosis and treatment plans. A platform to showcase clinical reasoning and communication skills.', icon: 'fa-stethoscope' },
   { name: 'Hephaestus', sub: '3D Model Making', desc: 'Bring anatomy and medical concepts to life through creative model building. A blend of science and art that tests innovation and teamwork.', icon: 'fa-cubes' },
-  { name: 'EUREKA', sub: 'Quiz', desc: 'A thrilling medical quiz where speed, accuracy, and teamwork decide the winners. Test your knowledge across specialties.', icon: 'fa-brain' },
-  { name: 'GRAPHE', sub: 'Poster Presentation', desc: 'Design and present medical posters that highlight research, innovation, or clinical themes. Combine creativity with scientific communication.', icon: 'fa-chart-column' }
+  { name: 'Eureka', sub: 'Quiz', desc: 'A thrilling medical quiz where speed, accuracy, and teamwork decide the winners. Test your knowledge across specialties.', icon: 'fa-brain' },
+  { name: 'Graphe', sub: 'Poster Presentation', desc: 'Design and present medical posters that highlight research, innovation, or clinical themes. Combine creativity with scientific communication.', icon: 'fa-chart-column' }
 ]
 
 const passiveEvents = [

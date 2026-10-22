@@ -4,7 +4,7 @@ const workshops = [
   { name: 'BLS (KAIROS)', sub: 'Basic Life Support', desc: 'Master CPR, choking management, disaster preparedness, and emergency rescue operations.', icon: 'fa-heart-pulse' },
   { name: 'BSS (PRAXIS)', sub: 'Basic Surgical Skills', desc: 'Hands-on training in knot-tying, suturing, and surgical techniques from experienced surgeons.', icon: 'fa-scissors' },
   { name: 'Emergency & Trauma (AUXILIUM)', sub: 'Emergency Care', desc: 'Securing airways, stabilizing traumatic injuries, CPR, defibrillation, and trauma immobilisation.', icon: 'fa-truck-medical' },
-  { name: 'OBG (VIT IN TRANSITU)', sub: 'Obstetrics & Gynaecology', desc: 'Childbirth management, vaginal delivery techniques, breech presentations, and emergency care.', icon: 'fa-baby' },
+  { name: 'OBGY (VITA IN TRANSITU)', sub: 'Obstetrics & Gynaecology', desc: 'Childbirth management, vaginal delivery techniques, breech presentations, and emergency care.', icon: 'fa-baby' },
   { name: 'Paediatrics (NEONOVA 360°)', sub: 'Pediatric Care', desc: 'Neonatal and pediatric care simulations. Manage emergencies in the smallest patients.', icon: 'fa-child' },
   { name: 'Ophthalmology (ORASIS)', sub: 'Vision Care', desc: '3D visualization, extraocular movement studies, and intraocular injection techniques.', icon: 'fa-eye' },
   { name: 'Orthopaedics (OSTEON)', sub: 'Bone & Joint Care', desc: 'Practical orthopedic training, surgical skills, and clinical reasoning for bone/joint conditions.', icon: 'fa-bone' },

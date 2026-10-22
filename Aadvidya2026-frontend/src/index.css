@@ -3299,3 +3299,12 @@ CUSTOM ANIMATED CURSOR
   }
 
 }
+
+
+.slideshow-video {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  display: block;
+}
+

@@ -1,18 +1,26 @@
 import React from 'react'
 import GallerySlideshow from './GallerySlideshow'
 
+// Images for Aadvidya
 const aadvidyaImages = [
-  { src: 'https://placehold.co/900x500/1a1a1a/e60000?text=Inauguration', caption: 'Inauguration Ceremony' },
-  { src: 'https://placehold.co/900x500/1a1a1a/e60000?text=Workshops', caption: 'Hands-on Workshops' },
-  { src: 'https://placehold.co/900x500/1a1a1a/e60000?text=Case+Presentation', caption: 'Case Presentations' },
-  { src: 'https://placehold.co/900x500/1a1a1a/e60000?text=Cultural+Night', caption: 'Cultural Night' }
+  // { src: '/Aadvidya-Images/TAR00910.JPG' },
+  { src: '/Aadvidya-Images/TAR00921.JPG' },
+  { src: '/Aadvidya-Images/TAR00990.JPG' },
+  { src: '/Aadvidya-Images/TAR01035.JPG' },
+  { src: '/Aadvidya-Images/TAR01256.JPG' },
+  { src: '/Aadvidya-Images/TAR01258.JPG' },
+  { src: '/Aadvidya-Images/TAR01259.JPG' },
+  { src: '/Aadvidya-Images/TAR01261.JPG' },
+  { src: '/Aadvidya-Images/TAR01268.JPG' },
+  { src: '/Aadvidya-Images/TAR01270.JPG' },
+  { src: '/Aadvidya-Images/TAR01790.JPG' },
+  { src: '/Aadvidya-Images/TAR01853.JPG' }
 ]
 
+// Images & Videos for MNR College 
 const collegeImages = [
-  { src: 'https://placehold.co/900x500/1a1a1a/e60000?text=Main+Campus', caption: 'Main Campus' },
-  { src: 'https://placehold.co/900x500/1a1a1a/e60000?text=Hospital+Building', caption: '1031-Bed Multispecialty Hospital' },
-  { src: 'https://placehold.co/900x500/1a1a1a/e60000?text=Simulation+Labs', caption: 'Advanced Simulation Labs' },
-  { src: 'https://placehold.co/900x500/1a1a1a/e60000?text=Central+Library', caption: 'Central Library' }
+  { src: '/MNR-Images/210.mp4', isVideo: true },
+  { src: '/MNR-Images/226.mp4', isVideo: true },
 ]
 
 export default function About() {
@@ -23,20 +31,28 @@ export default function About() {
         {/* AADVIDYA 2026 BOX */}
         <div className="about-box">
           <div className="about-box-header">
-            <i className="fas fa-calendar-star"></i>
+            <img 
+              src="/Aadvidya logo.png" 
+              alt="Aadvidya Logo" 
+              style={{ height: '45px', width: 'auto', marginRight: '12px', objectFit: 'contain' }} 
+            />
             <h3>AADVIDYA 2026</h3>
           </div>
           <p>Aadvidya, the academic medical fest of MNR Medical College, is a vibrant two-day affair that brings together medical students from across Telangana to celebrate knowledge, innovation, skill, and creativity.</p>
           <p>The fest features a diverse range of active events, including case presentations, poster presentations, and other academic competitions that nurture research aptitude, critical thinking, and a spirit of healthy competition. Complementing these are passive events that blend fun with learning, making medical education engaging, interactive, and accessible.</p>
           <p>Workshops conducted across various departments provide students with invaluable opportunities to acquire essential clinical and practical skills under the guidance of experienced professionals. In a landmark achievement, Aadvidya hosted the first-of-its-kind Model United Nations at a medical college in Telangana.</p>
           <p className="about-quote">"Making medical education more interactive, inclusive, and enjoyable."</p>
-          <GallerySlideshow images={aadvidyaImages} />
+          <GallerySlideshow images={aadvidyaImages} interval={3000} showCaptions={false} />
         </div>
 
-        {/* AADVIDYA MUN'26 BOX (NEW) */}
+        {/* AADVIDYA MUN'26 BOX */}
         <div className="about-box">
           <div className="about-box-header">
-            <i className="fas fa-globe"></i>
+            <img 
+              src="/Aadvidya logo.png" 
+              alt="Aadvidya Logo" 
+              style={{ height: '45px', width: 'auto', marginRight: '12px', objectFit: 'contain' }} 
+            />
             <h3>AadvidyaMUN'26</h3>
           </div>
           <p>Everyone has an opinion on the world. What if you had a seat at the table, a country to represent, and a voice to speak on the world's biggest issues in a room where questions are encouraged, stances are challenged, and solutions are built together?</p>
@@ -70,7 +86,11 @@ export default function About() {
         {/* MNR COLLEGE BOX */}
         <div className="about-box">
           <div className="about-box-header">
-            <i className="fas fa-hospital"></i>
+            <img 
+              src="/mnr-logo.png" 
+              alt="MNR Logo" 
+              style={{ height: '45px', width: 'auto', marginRight: '12px', objectFit: 'contain' }} 
+            />
             <h3>MNR Medical College</h3>
           </div>
           <p>Established in 2001 in Sangareddy, Telangana, MNR Medical College & Hospital has grown into one of the region’s leading institutions, nurturing over 5,000 students in Medicine and Health Sciences. Affiliated with KNR University of Health Sciences, recognized by the National Medical Commission (NMC), and accredited by NAAC with an “A” grade, MNR stands for excellence in medical education and compassionate healthcare.</p>
@@ -81,7 +101,7 @@ export default function About() {
             <span>25 Years of Knowledge. 25 Years of Service. A Future Dedicated to Healing.</span>
           </div>
 
-          <GallerySlideshow images={collegeImages} />
+          <GallerySlideshow images={collegeImages} interval={3000} showCaptions={false} />
         </div>
 
       </div>
