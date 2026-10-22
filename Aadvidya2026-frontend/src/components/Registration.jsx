@@ -64,7 +64,10 @@ export default function Registration() {
           </div>
 
           <div className="registration-buttons">
-            <a href="#events" className="btn btn-secondary">
+            <a href="https://www.instagram.com/aadvidya.2026?srtk=cWYzYzdlMHd6dm9x" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="Instagram" className="btn btn-secondary">
               <i className="fas fa-calendar-alt"></i> View Events
             </a>
             <a href="#" className="btn btn-primary">
