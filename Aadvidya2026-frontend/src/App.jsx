@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -16,14 +16,14 @@ import CustomCursor from './components/CustomCursor'
 
 function App() {
   const [loading, setLoading] = useState(true)
-  useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 3000)
-    return () => clearTimeout(t)
-  }, [])
+
+  const handlePreloaderComplete = () => {
+    setLoading(false)
+  }
 
   return (
     <Router>
-      {loading && <Preloader />}
+      {loading && <Preloader onComplete={handlePreloaderComplete} />}
       <div className={`app-container ${loading ? 'hidden' : ''}`}>
         <CustomCursor />
         <BackgroundAnimation />
