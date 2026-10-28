@@ -51,17 +51,6 @@ export default function GallerySlideshow({ images, interval = 3000, showCaptions
           <button className="slide-arrow slide-next" onClick={next} aria-label="Next">
             <i className="fas fa-chevron-right"></i>
           </button>
-          
-          <div className="slide-dots">
-            {images.map((_, i) => (
-              <button 
-                key={i} 
-                className={`slide-dot ${i === index ? 'active' : ''}`} 
-                onClick={() => setIndex(i)} 
-                aria-label={`Go to slide ${i + 1}`} 
-              />
-            ))}
-          </div>
         </>
       )}
     </div>
