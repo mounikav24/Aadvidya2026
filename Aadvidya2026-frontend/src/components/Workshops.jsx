@@ -6,22 +6,22 @@ const workshops = [
     sub: 'Basic Life Support',
     desc: 'Master CPR, choking management, disaster preparedness, and emergency rescue operations.',
     icon: 'fa-heart-pulse',
-    duration: '4 hours',
-    fee: '₹1,000',
+    date: '19th November 2026',
+    duration: '9:00 AM to 3:30 PM',
+    fee: '₹899',
     // contact: 'GR. Bhargavi (9347801285), K. Neha (6309319218)',
-    instructions: 'Venue and faculty to be confirmed. Please arrive 15 minutes early for registration.',
-    requirements: 'Valid student ID, a notebook, and a pen. Follow all hospital ward safety and hygiene protocols. Comfortable attire recommended for practical sessions.',
+    instructions: 'Follow all hospital ward safety and hygiene protocols. Active participation in physical simulations is expected.',
+    requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
     equipment: [
       'Adult CPR Manikin',
       'Paediatric CPR Manikin',
       'Airway Manikin',
       'Adult Choking Manikin',
-      'Paediatric Choking Manikin',
       'Automated External Defibrillator (AED) - to be confirmed'
     ],
     stations: [
       {
-        name: 'Adult CPR',
+        name: 'Adult CPR and AED',
         equipment: ['Adult CPR Manikin']
       },
       {
@@ -34,7 +34,7 @@ const workshops = [
       },
       {
         name: 'Choking Management',
-        equipment: ['Adult Choking Manikin', 'Paediatric Choking Manikin']
+        equipment: ['Adult Choking Manikin']
       }
     ]
   },
@@ -43,11 +43,12 @@ const workshops = [
     sub: 'Basic Surgical Skills',
     desc: 'Hands-on training in knot-tying, suturing, and surgical techniques from experienced surgeons.',
     icon: 'fa-scissors',
-    duration: '4 hours',
-    fee: '₹1,100',
+    date: '19th November 2026',
+    duration: '9:00 AM to 3:30 PM',
+    fee: '₹1,099',
     // contact: 'S. Sathvika (9492841343), K. Sanjana (9246820004)',
-    instructions: 'Venue to be confirmed. Strict adherence to sterility protocols will be enforced. Faculty: Dr. Rita Singh (Professor).',
-    requirements: 'Valid student ID, a notebook, and a pen. Follow all hospital ward safety and hygiene protocols. Comfortable attire recommended for practical sessions.',
+    instructions: 'Follow all hospital ward safety and hygiene protocols. Strict adherence to sterility protocols will be enforced. ',
+    requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
     stations: [
       {
         name: 'Suturing',
@@ -88,15 +89,16 @@ const workshops = [
     ]
   },
   {
-    name: 'Emergency & Trauma (AUXILIUM)',
+    name: 'Emergency & Trauma Care (AUXILIUM)',
     sub: 'Emergency Care',
     desc: 'Securing airways, stabilizing traumatic injuries, CPR, defibrillation, and trauma immobilisation.',
     icon: 'fa-truck-medical',
-    duration: '3.5 hours',
-    fee: '₹1,000',
+    date: '20th November 2026',
+    duration: '9:00 AM to 1:00 PM',
+    fee: '₹999',
     // contact: 'K. Sreeja, Sameeksha, Manaswini',
-    instructions: 'Venue and faculty to be confirmed. Active participation in physical simulations is expected.',
-    requirements: 'Valid student ID, a notebook, and a pen. Follow all hospital ward safety and hygiene protocols. Comfortable attire recommended for practical sessions.',
+    instructions: 'Follow all hospital ward safety and hygiene protocols. Active participation in physical simulations is expected.',
+    requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
     stations: [
       {
         name: 'Primary Breathing / Airway Management',
@@ -121,11 +123,12 @@ const workshops = [
     sub: 'Obstetrics & Gynaecology',
     desc: 'Childbirth management, vaginal delivery techniques, breech presentations, and emergency care.',
     icon: 'fa-baby',
-    duration: '3.5 hours',
-    fee: '₹1,100',
+    date: '20th November 2026',
+    duration: '9:00 AM to 1:00 PM',
+    fee: '₹799',
     // contact: 'Tejashree, Gayatri',
-    instructions: 'Venue and faculty to be confirmed. Maintain professional decorum during practical sessions.',
-    requirements: 'Valid student ID, a notebook, and a pen. Follow all hospital ward safety and hygiene protocols. Comfortable attire recommended for practical sessions.',
+    instructions: 'Follow all hospital ward safety and hygiene protocols. Maintain professional decorum during practical sessions.',
+    requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
     stations: [
       {
         name: 'Normal Vaginal Delivery (NVD)',
@@ -150,15 +153,16 @@ const workshops = [
     ]
   },
   {
-    name: 'Paediatrics (NEONOVA 360°)',
+    name: 'Pediatrics (NEONOVA 360°)',
     sub: 'Pediatric Care',
     desc: 'Neonatal and pediatric care simulations. Manage emergencies in the smallest patients.',
     icon: 'fa-child',
-    duration: '6.5 hours (9:00 AM – 3:30 PM)',
-    fee: '₹999',
+    date: '19th November 2026',
+    duration: '9:00 AM to 3:30 PM',
+    fee: '₹699',
     // contact: 'P.Srija (9392096290), L.SriTaranga (9030132289)',
-    instructions: 'Venue: New Learning Hall. Punctuality is mandatory for this full-day session.',
-    requirements: 'Valid student ID, a notebook, and a pen. Follow all hospital ward safety and hygiene protocols. Comfortable attire recommended for practical sessions.',
+    instructions: 'Venue: New Learning Hall. Punctuality is mandatory for this full-day session. Follow all hospital ward safety and hygiene protocols.',
+    requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
     stations: [
       {
         name: 'Neonatal Resuscitation Programme (NRP)',
@@ -171,6 +175,10 @@ const workshops = [
       {
         name: 'Breastfeeding & Newborn Feeding Practices',
         equipment: ['Breastfeeding model', 'Breastfeeding position banner']
+      },
+      {
+        name: 'Sepsis Management / Infection Control',
+        equipment: ['Stepsfor handhygiene chart']
       }
     ]
   },
@@ -179,11 +187,12 @@ const workshops = [
     sub: 'Vision Care',
     desc: '3D visualization, extraocular movement studies, and intraocular injection techniques.',
     icon: 'fa-eye',
-    duration: '3.5 hours (9:00 AM – 12:30 PM)',
+    date: '19th November 2026',
+    duration: '9:00 AM to 12:30 PM',
     fee: '₹599',
     // contact: 'Yogitha (+91 77290 67977), Sai Shivani',
-    instructions: 'Venue: Ophthalmology Ward. Faculty: Prajwali Mam, Ananya Mam. Day 1 (Nov 19).',
-    requirements: 'Valid student ID, a notebook, and a pen. Follow all hospital ward safety and hygiene protocols. Comfortable attire recommended for practical sessions.',
+    instructions: 'Venue: Ophthalmology Ward. Follow all hospital ward safety and hygiene protocols. Ensure to have your own gloves and masks for practical sessions.',
+    requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
     stations: [
       {
         name: 'Cataract Surgery',
@@ -211,11 +220,12 @@ const workshops = [
     sub: 'Bone & Joint Care',
     desc: 'Practical orthopedic training, surgical skills, and clinical reasoning for bone/joint conditions.',
     icon: 'fa-bone',
-    duration: '3 hours',
+    date: '19th November 2026',
+    duration: '9:00 AM to 12:30 PM',
     fee: '₹699',
     // contact: 'Bandhavi (+91 86886 13121), Tarani (+91 63019 41986)',
-    instructions: 'Venue to be confirmed. Faculty: Dr. Akram Sir. Hands-on participation in casting and splinting.',
-    requirements: 'Valid student ID, a notebook, and a pen. Follow all hospital ward safety and hygiene protocols. Wear comfortable clothing for practical sessions.',
+    instructions: 'Follow all hospital ward safety and hygiene protocols. Hands-on participation in casting and splinting.',
+    requirements: 'Valid student ID, a notebook, and a pen. Wear comfortable clothing for practical sessions.',
     stations: [
       {
         name: 'Instrument Identification, Clinical Examination & X-ray Interpretation',
@@ -252,11 +262,12 @@ const workshops = [
     sub: 'Respiratory Care',
     desc: 'Respiratory assessment, chest X-rays, spirometry, and oxygen therapy management.',
     icon: 'fa-lungs',
-    duration: '4 hours',
+    date: '20th November 2026',
+    duration: '9:00 AM to 1:00 PM',
     fee: '₹599',
     // contact: 'Vani, Marcellus, Nayan',
-    instructions: 'Venue to be confirmed. Interactive, station-based learning format.',
-    requirements: 'Valid student ID, a notebook, and a pen. Follow all hospital ward safety and hygiene protocols. Comfortable attire recommended for practical sessions.',
+    instructions: 'Follow all hospital ward safety and hygiene protocols. Interactive, station-based learning format.',
+    requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
     stations: [
       {
         name: 'Pulmonary Function Tests (PFT) — Spirometry',
@@ -361,10 +372,10 @@ export default function Workshops() {
                 <span className="detail-label"><i className="fas fa-layer-group"></i> Stations</span>
                 <span className="detail-value">{selected.stations.length}</span>
               </div>
-              {/* <div className="detail-item full-width">
-                <span className="detail-label"><i className="fas fa-user-tie"></i> Contact Person</span>
-                <span className="detail-value">{selected.contact}</span>
-              </div> */}
+              <div className="detail-item full-width">
+                <span className="detail-label"><i className="fas fa-calendar"></i> Date</span>
+                <span className="detail-value">{selected.date}</span>
+              </div> 
               {selected.instructions && (
                 <div className="detail-item full-width">
                   <span className="detail-label"><i className="fas fa-info-circle"></i> Instructions</span>

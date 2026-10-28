@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 
 const activeEvents = [
-  { name: 'Symptoma', sub: 'Case Presentation', desc: 'Present real medical cases with structured diagnosis and treatment plans. A platform to showcase clinical reasoning and communication skills.', icon: 'fa-stethoscope' },
-  { name: 'Hephaestus', sub: '3D Model Making', desc: 'Bring anatomy and medical concepts to life through creative model building. A blend of science and art that tests innovation and teamwork.', icon: 'fa-cubes' },
-  { name: 'Eureka', sub: 'Quiz', desc: 'A thrilling medical quiz where speed, accuracy, and teamwork decide the winners. Test your knowledge across specialties.', icon: 'fa-brain' },
-  { name: 'Graphe', sub: 'Poster Presentation', desc: 'Design and present medical posters that highlight research, innovation, or clinical themes. Combine creativity with scientific communication.', icon: 'fa-chart-column' }
+  { name: 'Case Presentation', sub: 'Symptoma', desc: 'Present real medical cases with structured diagnosis and treatment plans. A platform to showcase clinical reasoning and communication skills.', icon: 'fa-stethoscope' },
+  { name: '3D Model Making', sub: 'Hephaestus', desc: 'Bring anatomy and medical concepts to life through creative model building. A blend of science and art that tests innovation and teamwork.', icon: 'fa-cubes' },
+  { name: 'Quiz', sub: 'Eureka', desc: 'A thrilling medical quiz where speed, accuracy, and teamwork decide the winners. Test your knowledge across specialties.', icon: 'fa-brain' },
+  { name: 'Poster Presentation', sub: 'Graphe', desc: 'Design and present medical posters that highlight research, innovation, or clinical themes. Combine creativity with scientific communication.', icon: 'fa-chart-column' }
 ]
 
 const passiveEvents = [
   { name: 'Hang or Diagnose', desc: "A diagnostic puzzle game where teams race to crack the case before the diagnosis gets 'hanged.'", icon: 'fa-user-doctor' },
   { name: 'Spell Bee', desc: 'Test your spelling speed and accuracy with medical terms.', icon: 'fa-spell-check' },
-  { name: 'Clinical Quickfire', desc: 'Race against time to identify diseases from signs or pick the correct first-line drug.', icon: 'fa-bolt' },
   { name: 'Medical Taboo', desc: 'Guess medical terms without using restricted words. A fun team game.', icon: 'fa-comments' },
   { name: 'Just a Minute', desc: 'Speak impromptu for one minute on medical topics.', icon: 'fa-microphone' },
   { name: 'Word Scramble', desc: 'Unscramble medical words and terms under time pressure.', icon: 'fa-font' },
@@ -21,7 +20,7 @@ const passiveEvents = [
   { name: 'Path Mystery Box', desc: 'Spot diseases from pathological images and histology clues.', icon: 'fa-microscope' },
   { name: 'Psychiatry Escape Room', desc: 'Solve psychological puzzles and escape within time limits.', icon: 'fa-key' },
   { name: 'Wrong Answers Only', desc: 'Say the most ridiculous answers — creativity and humor win.', icon: 'fa-face-laugh-squint' },
-  { name: 'Crime Scene Investigation', desc: 'Step into the shoes of a forensic investigator.', icon: 'fa-magnifying-glass' }
+  { name: 'Mortem Mysterio', desc: 'Step into the shoes of a forensic investigator.', icon: 'fa-magnifying-glass' }
 ]
 
 export default function Events() {
