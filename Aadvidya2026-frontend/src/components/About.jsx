@@ -17,10 +17,28 @@ const aadvidyaImages = [
   { src: '/Aadvidya-Images/TAR01853.JPG' }
 ]
 
+// Images for Aadvidya MUN
+const aadvidyaMUNImages = [ 
+  { src: '/MUN-Images/1.JPG' },
+  { src: '/MUN-Images/2.JPG' },
+  { src: '/MUN-Images/3.JPG' },
+  { src: '/MUN-Images/4.JPG' },
+  { src: '/MUN-Images/5.JPG' },
+  { src: '/MUN-Images/6.JPG' },
+  { src: '/MUN-Images/7.JPG' },
+  { src: '/MUN-Images/8.JPG' },
+]
+
 // Images & Videos for MNR College 
 const collegeImages = [
+  { src: '/MNR-Images/1624.jpeg' },
   { src: '/MNR-Images/210.mp4', isVideo: true },
   { src: '/MNR-Images/226.mp4', isVideo: true },
+  { src: '/MNR-Images/136.JPG' },
+  { src: '/MNR-Images/143.png' },
+  { src: '/MNR-Images/227.JPG' },
+  { src: '/MNR-Images/9383.png' }, 
+  { src: '/MNR-Images/9392.png' }, 
 ]
 
 export default function About() {
@@ -80,6 +98,7 @@ export default function About() {
                 <span>Sanjeeti: <a href="tel:9849803759" style={{ color: '#ffd700', textDecoration: 'none', fontWeight: '600' }}>9849803759</a></span>
               </div>
             </div>
+            <GallerySlideshow images={aadvidyaMUNImages} interval={3000} showCaptions={false} />
           </div>
         </div>
 

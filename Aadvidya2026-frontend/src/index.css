@@ -975,12 +975,292 @@ button.btn-register {
   transform: scale(1.2);
 }
 
+/* =========================================
+   WORKSHOP STATIONS LIST WITH EQUIPMENT
+========================================= */
+
+.stations-section {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: rgba(10, 10, 26, 0.5);
+  border: 1px solid rgba(240, 165, 0, 0.25);
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.stations-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #f0a500, #7b2ff7, transparent);
+}
+
+.stations-title {
+  color: #ffd700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+}
+
+.stations-title i {
+  color: #f0a500;
+  font-size: 1rem;
+}
+
+.stations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.station-item {
+  padding: 1rem;
+  background: rgba(26, 26, 62, 0.5);
+  border-radius: 0.75rem;
+  border-left: 3px solid transparent;
+  transition: all 0.25s ease;
+}
+
+.station-item:hover {
+  border-left-color: #ffd700;
+  background: rgba(240, 165, 0, 0.08);
+  transform: translateX(4px);
+}
+
+.station-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 0.75rem;
+}
+
+.station-number {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #ffd700;
+  min-width: 32px;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.station-name {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.station-equipment {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 44px;
+}
+
+.equipment-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: #c8c8e0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.equipment-item i {
+  color: #f0a500;
+  font-size: 0.75rem;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .stations-section {
+    padding: 1rem;
+  }
+  .station-item {
+    padding: 0.85rem;
+  }
+  .station-name {
+    font-size: 0.95rem;
+  }
+  .station-equipment {
+    padding-left: 32px;
+  }
+  .equipment-item {
+    font-size: 0.8rem;
+  }
+}
+
 .events-section, .workshops-section { background: #0a0a1a; }
 
 .events-grid-2col, .workshops-grid-2col {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+}
+
+/* =========================================
+   EVENTS INFO BANNER
+========================================= */
+
+.events-info-banner {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(26, 26, 62, 0.5);
+  border: 1px solid rgba(240, 165, 0, 0.25);
+  border-radius: 1rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.5rem 1rem;
+  color: #e0e0f0;
+  font-size: 0.9rem;
+}
+
+.info-item i {
+  font-size: 1.3rem;
+  color: #ffd700;
+}
+
+.info-item strong {
+  color: #ffd700;
+  margin-right: 6px;
+}
+
+/* =========================================
+   COLUMN TITLE WITH BADGE
+========================================= */
+
+.column-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.column-title i {
+  color: #ffd700;
+  font-size: 1.1rem;
+}
+
+.column-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(135deg, #f0a500, #7b2ff7);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+  margin-left: 8px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.column-badge.free {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+/* =========================================
+   EVENT FEE TAG ON CARDS
+========================================= */
+
+.event-flash-card {
+  position: relative;
+}
+
+.event-fee-tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 0.25rem 0.65rem;
+  background: linear-gradient(135deg, #f0a500, #7b2ff7);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(240, 165, 0, 0.3);
+}
+
+.event-fee-tag.free {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+}
+
+/* =========================================
+   FEE HIGHLIGHT IN MODAL
+========================================= */
+
+.fee-highlight {
+  color: #ffd700 !important;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.fee-free {
+  color: #22c55e !important;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* =========================================
+   RULES SECTION HIGHLIGHTS
+========================================= */
+
+.flash-card-rules ul li strong {
+  color: #ffd700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .events-info-banner {
+    flex-direction: column;
+    padding: 0.75rem;
+  }
+  .info-item {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+  }
+  .column-title {
+    font-size: 1.1rem;
+  }
+  .column-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+  .event-fee-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.55rem;
+  }
 }
 
 .column-title {
@@ -1159,6 +1439,24 @@ button.btn-register {
   background: rgba(10, 10, 26, 0.5);
   padding: 0.75rem;
   border-radius: 0.75rem;
+}
+
+/* Ensure full-width items span both columns in the details grid */
+.detail-item.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Add subtle gold accent to the detail icons */
+.detail-label i {
+  margin-right: 6px;
+  color: #f0a500;
+  font-size: 0.8rem;
+}
+
+/* Ensure detail values wrap nicely on mobile */
+.detail-value {
+  word-wrap: break-word;
+  line-height: 1.4;
 }
 
 .detail-label {

@@ -32,31 +32,72 @@ export default function Events() {
     setTimeout(() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' }), 50)
   }
 
+  // Determine fee and participation rules based on event type
+  const getEventDetails = (event) => {
+    const isActive = activeEvents.some(e => e.name === event.name)
+    return {
+      type: isActive ? 'Active Event' : 'Passive Event',
+      fee: isActive ? '₹100' : 'FREE',
+      participation: isActive ? '1 Active Event per participant' : 'Unlimited — participate in as many as you like',
+      feeHighlight: isActive
+    }
+  }
+
   return (
     <section id="events" className="events-section">
       <div className="section-container">
         <h2 className="section-title">Events</h2>
 
+        {/* Quick Info Banner */}
+        <div className="events-info-banner">
+          <div className="info-item">
+            <i className="fas fa-trophy"></i>
+            <div>
+              <strong>Active Events:</strong> ₹100 each • Limited to 1 per participant
+            </div>
+          </div>
+          <div className="info-item">
+            <i className="fas fa-gift"></i>
+            <div>
+              <strong>Passive Events:</strong> FREE • Participate in as many as you like!
+            </div>
+          </div>
+        </div>
+
         <div className="events-grid-2col">
           <div className="events-column">
-            <h3 className="column-title">Active Events</h3>
+            <h3 className="column-title">
+              <i className="fas fa-trophy"></i> Active Events
+              {/* <span className="column-badge">₹100</span> */}
+            </h3>
             <div className="events-list">
               {activeEvents.map((event, idx) => (
-                <div key={idx} className="event-flash-card" onClick={() => setSelectedEvent({ ...event, type: 'Active Event' })}>
+                <div key={idx} className="event-flash-card" onClick={() => setSelectedEvent({ ...event, ...getEventDetails(event) })}>
                   <div className="event-icon"><i className={`fas ${event.icon}`}></i></div>
-                  <div className="event-info"><h4>{event.name}</h4><p>{event.sub}</p></div>
+                  <div className="event-info">
+                    <h4>{event.name}</h4>
+                    <p>{event.sub}</p>
+                  </div>
+                  {/* <span className="event-fee-tag">₹100</span> */}
                 </div>
               ))}
             </div>
           </div>
 
           <div className="events-column">
-            <h3 className="column-title">Passive Events</h3>
+            <h3 className="column-title">
+              <i className="fas fa-star"></i> Passive Events
+              {/* <span className="column-badge free">FREE</span> */}
+            </h3>
             <div className="events-list">
               {passiveEvents.map((event, idx) => (
-                <div key={idx} className="event-flash-card" onClick={() => setSelectedEvent({ ...event, type: 'Passive Event' })}>
+                <div key={idx} className="event-flash-card" onClick={() => setSelectedEvent({ ...event, ...getEventDetails(event) })}>
                   <div className="event-icon"><i className={`fas ${event.icon}`}></i></div>
-                  <div className="event-info"><h4>{event.name}</h4><p>{event.desc.substring(0, 45)}...</p></div>
+                  <div className="event-info">
+                    <h4>{event.name}</h4>
+                    <p>{event.desc.substring(0, 45)}...</p>
+                  </div>
+                  {/* <span className="event-fee-tag free">FREE</span> */}
                 </div>
               ))}
             </div>
@@ -82,17 +123,43 @@ export default function Events() {
             </div>
             <p className="flash-card-desc">{selectedEvent.desc}</p>
             <div className="flash-card-details">
-              <div className="detail-item"><span className="detail-label">Venue</span><span className="detail-value">MNR Campus (TBA)</span></div>
-              <div className="detail-item"><span className="detail-label">Fee</span><span className="detail-value">To be announced</span></div>
-              <div className="detail-item"><span className="detail-label">Certificate</span><span className="detail-value">Provided</span></div>
-              <div className="detail-item"><span className="detail-label">Contact</span><span className="detail-value">TBA</span></div>
+              <div className="detail-item">
+                <span className="detail-label"><i className="fas fa-location-dot"></i> Venue</span>
+                <span className="detail-value">MNR Campus (TBA)</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label"><i className="fas fa-tag"></i> Fee</span>
+                <span className={`detail-value ${selectedEvent.feeHighlight ? 'fee-highlight' : 'fee-free'}`}>
+                  {selectedEvent.fee}
+                </span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label"><i className="fas fa-certificate"></i> Certificate</span>
+                <span className="detail-value">Provided</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label"><i className="fas fa-users"></i> Participation</span>
+                <span className="detail-value">{selectedEvent.participation}</span>
+              </div>
+              <div className="detail-item full-width">
+                <span className="detail-label"><i className="fas fa-user-tie"></i> Contact</span>
+                <span className="detail-value">TBA</span>
+              </div>
             </div>
             <div className="flash-card-rules">
-              <h4>Rules & Eligibility</h4>
+              <h4><i className="fas fa-gavel"></i> Rules & Discipline</h4>
               <ul>
-                <li>Open to all registered medical students</li>
-                <li>Team size and rules shared upon registration</li>
-                <li>Decision of judges is final</li>
+                <li>Open to all registered medical students with valid ID</li>
+                <li><strong>Active Events:</strong> Each participant may register for only ONE active event</li>
+                <li><strong>Passive Events:</strong> No limit — participate in as many as you wish</li>
+                <li>Maintain professional decorum and discipline throughout the event</li>
+                <li>Arrive 15 minutes before the scheduled time</li>
+                <li>Mobile phones must be switched off during presentations and competitions</li>
+                <li>No plagiarism or unfair means — strict action will be taken</li>
+                <li>Respect judges, coordinators, and fellow participants at all times</li>
+                <li>Team size and specific rules will be shared upon registration</li>
+                <li>Decision of the judges and organizing committee is final and binding</li>
+                <li>Any misconduct may lead to immediate disqualification</li>
               </ul>
             </div>
             <button className="btn btn-primary" onClick={closeAndRegister}>Register Now</button>
