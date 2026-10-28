@@ -10,7 +10,7 @@ export default function Hero() {
     const ctx = canvas.getContext('2d')
     let width, height, raf
     let particles = [], hexes = []
-    let helixBaseY = 0 // Dynamic Y position
+    let helixBaseY = 0
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     const initParticles = () => {
@@ -42,16 +42,13 @@ export default function Hero() {
       initParticles()
       initHexes()
 
-      // --- DYNAMIC HELIX POSITIONING ---
-      // Find the .helix-zone div and calculate its center relative to the canvas
       const zone = document.querySelector('.helix-zone')
       if (zone) {
         const canvasRect = canvas.getBoundingClientRect()
         const zoneRect = zone.getBoundingClientRect()
-        // Calculate Y offset: (Zone Top relative to screen) - (Canvas Top relative to screen) + (Half Zone Height)
         helixBaseY = (zoneRect.top - canvasRect.top) + (zoneRect.height / 2)
       } else {
-        helixBaseY = height * 0.8 // Fallback
+        helixBaseY = height * 0.8
       }
       
       if (reduceMotion) draw(0)
@@ -70,7 +67,7 @@ export default function Hero() {
           i ? ctx.lineTo(px, py) : ctx.moveTo(px, py)
         }
         ctx.closePath()
-        ctx.strokeStyle = 'rgba(240,165,0,0.08)' // Gold theme
+        ctx.strokeStyle = 'rgba(240,165,0,0.08)'
         ctx.lineWidth = 1
         ctx.stroke()
         for (let i = 0; i < 6; i++) {
@@ -93,7 +90,7 @@ export default function Hero() {
         const twinkle = 0.55 + 0.45 * Math.sin(t * 0.002 + p.tw)
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(255,215,0,${(p.alpha * twinkle).toFixed(3)})` // Gold particles
+        ctx.fillStyle = `rgba(255,215,0,${(p.alpha * twinkle).toFixed(3)})`
         ctx.shadowBlur = 10
         ctx.shadowColor = 'rgba(240,165,0,0.7)'
         ctx.fill()
@@ -107,7 +104,6 @@ export default function Hero() {
       const k = 0.014
       const speed = t * 0.0011
 
-      // base-pair rungs
       for (let x = 0; x <= width; x += 18) {
         const ph = x * k + speed
         const y1 = baseY + Math.sin(ph) * amp
@@ -121,7 +117,6 @@ export default function Hero() {
         ctx.beginPath(); ctx.moveTo(x, y1); ctx.lineTo(x, y2); ctx.stroke()
       }
 
-      // two glowing strands
       for (let s = 0; s < 2; s++) {
         const off = s * Math.PI
         ctx.beginPath()
@@ -164,7 +159,7 @@ export default function Hero() {
     }
 
     window.addEventListener('resize', resize)
-    resize() // This runs immediately and sets the position
+    resize()
     if (!reduceMotion) raf = requestAnimationFrame(loop)
 
     return () => {
@@ -173,10 +168,6 @@ export default function Hero() {
     }
   }, [])
 
-  const total = TITLE.length
-  const arc = 44
-  const stepDeg = arc / (total - 1)
-  const startDeg = -arc / 2
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 
   return (
@@ -185,22 +176,17 @@ export default function Hero() {
       <div className="hero-overlay"></div>
       
       <div className="hero-center-content">
-        <h1 className="curved-title" aria-label="AADVIDYA">
-          {TITLE.split('').map((ch, i) => {
-            const angle = startDeg + i * stepDeg
-            const rad = (angle * Math.PI) / 180
-            const lift = (1 - Math.cos(rad)) * 55
-            return (
-              <span key={i} className="curved-letter" style={{ transform: `rotate(${angle}deg) translateY(${lift}px)` }}>
-                {ch}
-              </span>
-            )
-          })}
+        {/* STRAIGHT, PROFESSIONAL, ELEGANT TITLE */}
+        <h1 className="elegant-title" aria-label="AADVIDYA">
+          {TITLE.split('').map((ch, i) => (
+            <span key={i} className="elegant-letter" style={{ animationDelay: `${i * 0.06}s` }}>
+              {ch}
+            </span>
+          ))}
         </h1>
         
-        {/* Updated subtitle with MNR logo */}
-        <div className="hero-subtitle" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
-          <img src="/mnr-logo.png" alt="MNR Logo" style={{ height: '40px', width: 'auto', maxWidth: '120px' }} />
+        <div className="hero-subtitle">
+          <img src="/mnr-logo.png" alt="MNR Logo" className="mnr-logo" />
           <span>MNR Medical College & Hospital</span>
         </div>
         
@@ -214,7 +200,6 @@ export default function Hero() {
           </svg>
         </div>
 
-        {/* THIS DIV REPLACES THE <br /> TAGS */}
         <div className="helix-zone"></div>
 
         <div className="hero-buttons">
