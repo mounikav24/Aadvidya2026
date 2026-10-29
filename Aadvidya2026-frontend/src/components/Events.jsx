@@ -216,7 +216,7 @@ export default function Events() {
           <div className="events-column">
             <h3 className="column-title">
               <i className="fas fa-trophy"></i> Active Events
-              <span className="column-badge">₹100</span>
+              {/* <span className="column-badge">₹100</span> */}
             </h3>
             <div className="events-list">
               {activeEvents.map((event, idx) => (
@@ -226,7 +226,7 @@ export default function Events() {
                     <h4>{event.name}</h4>
                     <p>{event.sub}</p>
                   </div>
-                  <span className="event-fee-tag">₹100</span>
+                  {/* <span className="event-fee-tag">₹100</span> */}
                 </div>
               ))}
             </div>
@@ -235,7 +235,7 @@ export default function Events() {
           <div className="events-column">
             <h3 className="column-title">
               <i className="fas fa-star"></i> Passive Events
-              <span className="column-badge free">FREE</span>
+              {/* <span className="column-badge free">FREE</span> */}
             </h3>
             <div className="events-list">
               {passiveEvents.map((event, idx) => (
@@ -245,7 +245,7 @@ export default function Events() {
                     <h4>{event.name}</h4>
                     <p>{event.sub}</p>
                   </div>
-                  <span className="event-fee-tag free">FREE</span>
+                  {/* <span className="event-fee-tag free">FREE</span> */}
                 </div>
               ))}
             </div>
