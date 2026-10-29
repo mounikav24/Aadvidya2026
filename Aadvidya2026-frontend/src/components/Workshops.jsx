@@ -4,7 +4,9 @@ const workshops = [
   {
     name: 'BLS (KAIROS)',
     sub: 'Basic Life Support',
-    desc: 'Master CPR, choking management, disaster preparedness, and emergency rescue operations.',
+    tagline: 'Learn with Purpose. Practice with Precision. Heal with Compassion.',
+    desc: 'An intensive, hands-on workshop designed to impart essential life-saving skills, encompassing CPR, choking management across all age groups, disaster preparedness, emergency triage, and rescue operations.',
+    // desc: 'Master CPR, choking management, disaster preparedness, and emergency rescue operations.',
     icon: 'fa-heart-pulse',
     date: '19th November 2026',
     duration: '9:00 AM to 3:30 PM',
@@ -12,36 +14,38 @@ const workshops = [
     // contact: 'GR. Bhargavi (9347801285), K. Neha (6309319218)',
     instructions: 'Follow all hospital ward safety and hygiene protocols. Active participation in physical simulations is expected.',
     requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
-    equipment: [
-      'Adult CPR Manikin',
-      'Paediatric CPR Manikin',
-      'Airway Manikin',
-      'Adult Choking Manikin',
-      'Automated External Defibrillator (AED) - to be confirmed'
-    ],
+    // equipment: [
+    //   'Adult CPR Manikin',
+    //   'Paediatric CPR Manikin',
+    //   'Airway Manikin',
+    //   'Adult Choking Manikin',
+    //   'Automated External Defibrillator (AED) - to be confirmed'
+    // ],
     stations: [
       {
         name: 'Adult CPR and AED',
-        equipment: ['Adult CPR Manikin']
+        // equipment: ['Adult CPR Manikin']
       },
       {
         name: 'Paediatric CPR',
-        equipment: ['Paediatric CPR Manikin']
+        // equipment: ['Paediatric CPR Manikin']
       },
       {
         name: 'Airway Management',
-        equipment: ['Airway Manikin']
+        // equipment: ['Airway Manikin']
       },
       {
         name: 'Choking Management',
-        equipment: ['Adult Choking Manikin']
+        // equipment: ['Adult Choking Manikin']
       }
     ]
   },
   {
     name: 'BSS (PRAXIS)',
     sub: 'Basic Surgical Skills',
-    desc: 'Hands-on training in knot-tying, suturing, and surgical techniques from experienced surgeons.',
+    tagline: 'From Theory to the Operating Table',
+    desc: 'An intensive, hands-on workshop focused on core surgical techniques, knot-tying, and suturing. Learn essential clinical precision directly from expert surgeons.',
+    // desc: 'Hands-on training in knot-tying, suturing, and surgical techniques from experienced surgeons.',
     icon: 'fa-scissors',
     date: '19th November 2026',
     duration: '9:00 AM to 3:30 PM',
@@ -52,46 +56,48 @@ const workshops = [
     stations: [
       {
         name: 'Suturing',
-        equipment: ['Silicone pads (6)', 'Suture sets (needle holder, forceps, scissors)', 'Silk sutures', 'Sharps bin']
+        // equipment: ['Silicone pads (6)', 'Suture sets (needle holder, forceps, scissors)', 'Silk sutures', 'Sharps bin']
       },
       {
         name: 'Hand Knots',
-        equipment: ['Two-tone thick cords', 'Rubber bands']
+        // equipment: ['Two-tone thick cords', 'Rubber bands']
       },
       {
         name: 'Handwash & Gloving',
-        equipment: ['Hand wash supplies', 'Sterile surgical gloves', 'Non-sterile latex gloves']
+        // equipment: ['Hand wash supplies', 'Sterile surgical gloves', 'Non-sterile latex gloves']
       },
       {
         name: 'Catheterization',
-        equipment: ['Male and female catheterization pelvic mannequins', '2-way Foley catheters (14/16 Fr)', "Ryle's tube", 'Uro-bags', 'Distilled water (10cc x 6)', 'Lignocaine gel']
+        // equipment: ['Male and female catheterization pelvic mannequins', '2-way Foley catheters (14/16 Fr)', "Ryle's tube", 'Uro-bags', 'Distilled water (10cc x 6)', 'Lignocaine gel']
       },
       {
         name: 'Clamping a Blood Vessel',
-        equipment: ['Artery forceps', 'Syringes (10cc)']
+        // equipment: ['Artery forceps', 'Syringes (10cc)']
       },
       {
         name: 'Casualty Bandaging & Tourniquet',
-        equipment: ['Reusable crepe bandages (10 cm and 15 cm)', 'Commercial tourniquets', 'Paper plaster', 'Easy fix']
+        // equipment: ['Reusable crepe bandages (10 cm and 15 cm)', 'Commercial tourniquets', 'Paper plaster', 'Easy fix']
       },
       {
         name: 'Holding & Passing Instruments',
-        equipment: ['Surgical instruments', 'Suture scissors', 'Blindfolds/eye masks']
+        // equipment: ['Surgical instruments', 'Suture scissors', 'Blindfolds/eye masks']
       },
       {
         name: 'Patient Draping & OT Sterility',
-        equipment: ['OT gowns', 'Green drape', 'Washable poster paint']
+        // equipment: ['OT gowns', 'Green drape', 'Washable poster paint']
       },
       {
         name: 'Venipuncture',
-        equipment: ['IV cannulas', 'Syringes', 'Disposal bin']
+        // equipment: ['IV cannulas', 'Syringes', 'Disposal bin']
       }
     ]
   },
   {
     name: 'Emergency & Trauma Care (AUXILIUM)',
     sub: 'Emergency Care',
-    desc: 'Securing airways, stabilizing traumatic injuries, CPR, defibrillation, and trauma immobilisation.',
+    tagline: 'From Securing an Airway to Restoring a Heartbeat',
+    desc: 'From securing an airway to restoring a heartbeat, from administering emergency injections to stabilising traumatic injuries, every station is designed to transform medical knowledge into life-saving skills. Explore airway and breathing management, IV and cardiopulmonary resuscitation (CPR), defibrillation, and trauma immobilisation.',
+    // desc: 'Securing airways, stabilizing traumatic injuries, CPR, defibrillation, and trauma immobilisation.',
     icon: 'fa-truck-medical',
     date: '20th November 2026',
     duration: '9:00 AM to 1:00 PM',
@@ -102,26 +108,27 @@ const workshops = [
     stations: [
       {
         name: 'Primary Breathing / Airway Management',
-        equipment: ['Airway mannequin (up to lungs)', 'Different oxygen-delivery masks', 'Laryngeal tube', 'Oxygen mask', 'Endotracheal tube', 'Rebreathing mask', 'Ambu bag']
+        // equipment: ['Airway mannequin (up to lungs)', 'Different oxygen-delivery masks', 'Laryngeal tube', 'Oxygen mask', 'Endotracheal tube', 'Rebreathing mask', 'Ambu bag']
       },
       {
         name: 'IV and IM Injection',
-        equipment: ['Upper-limb mannequin', 'Gloves', 'NS, DNS, and RL fluids', 'Tourniquet', 'Different types of syringes', 'IV infusion set', 'Sanitiser', 'Cannulas (14G, 16G, 18G, 20G, 22G, 24G)', 'Sterile swabs']
+        // equipment: ['Upper-limb mannequin', 'Gloves', 'NS, DNS, and RL fluids', 'Tourniquet', 'Different types of syringes', 'IV infusion set', 'Sanitiser', 'Cannulas (14G, 16G, 18G, 20G, 22G, 24G)', 'Sterile swabs']
       },
       {
         name: 'Defibrillation and CPR',
-        equipment: ['CPR mannequin', 'Defibrillator machine']
+        // equipment: ['CPR mannequin', 'Defibrillator machine']
       },
       {
         name: 'Immobilisation',
-        equipment: ['Full-body mannequin', 'Splint', 'Philadelphia collars', 'Spineboard', 'Roller gauze']
+        // equipment: ['Full-body mannequin', 'Splint', 'Philadelphia collars', 'Spineboard', 'Roller gauze']
       }
     ]
   },
   {
     name: 'OBGY (VITA IN TRANSITU)',
     sub: 'Obstetrics & Gynaecology',
-    desc: 'Childbirth management, vaginal delivery techniques, breech presentations, and emergency care.',
+    tagline: 'Life in Transition',
+    desc: 'An intensive, hands-on workshop designed to enhance clinical skills in obstetric emergencies and childbirth management. Explore the stages and mechanism of normal vaginal delivery, identify breech presentations, and practise essential delivery techniques using obstetric mannequins. Focus on recognition and initial management of postpartum haemorrhage (PPH) and eclampsia through interactive case scenarios.',
     icon: 'fa-baby',
     date: '20th November 2026',
     duration: '9:00 AM to 1:00 PM',
@@ -132,30 +139,31 @@ const workshops = [
     stations: [
       {
         name: 'Normal Vaginal Delivery (NVD)',
-        equipment: ['NVD mannequin']
+        // equipment: ['NVD mannequin']
       },
       {
         name: 'Breech Delivery',
-        equipment: ['Breech-delivery mannequin']
+        // equipment: ['Breech-delivery mannequin']
       },
       {
         name: 'Postpartum Haemorrhage (PPH) & Episiotomy',
-        equipment: ['PPH kit', 'Uterus model', 'Suturing kits (2)']
+        // equipment: ['PPH kit', 'Uterus model', 'Suturing kits (2)']
       },
       {
         name: 'Cardiotocography (CTG)',
-        equipment: ['CTG machine (available in department)']
+        // equipment: ['CTG machine (available in department)']
       },
       {
         name: 'Neonatal Resuscitation',
-        equipment: ['Neonatal mannequin']
+        // equipment: ['Neonatal mannequin']
       }
     ]
   },
   {
     name: 'Pediatrics (NEONOVA 360°)',
     sub: 'Pediatric Care',
-    desc: 'Neonatal and pediatric care simulations. Manage emergencies in the smallest patients.',
+    tagline: 'Little Patients, Big Challenges — 360° of Care, One Precious Beginning',
+    desc: 'Every healthy future begins with the right care at the very beginning. Welcome to the world of Paediatrics, where every tiny detail matters and timely intervention can make all the difference. Join us for a hands-on workshop featuring interactive simulations and skill stations to sharpen your clinical skills and experience managing the smallest patients in the biggest emergencies.',
     icon: 'fa-child',
     date: '19th November 2026',
     duration: '9:00 AM to 3:30 PM',
@@ -166,26 +174,27 @@ const workshops = [
     stations: [
       {
         name: 'Neonatal Resuscitation Programme (NRP)',
-        equipment: ['3 neonatal manikins (main)', 'ET intubation setup (1)', 'BMV (Bag and Mask Ventilation)', 'Preterm baby manikin (1)', 'Term baby manikin (1)', 'Laryngoscope', 'Ambu bag', 'NT catheter (2.5, 3mm)']
+        // equipment: ['3 neonatal manikins (main)', 'ET intubation setup (1)', 'BMV (Bag and Mask Ventilation)', 'Preterm baby manikin (1)', 'Term baby manikin (1)', 'Laryngoscope', 'Ambu bag', 'NT catheter (2.5, 3mm)']
       },
       {
         name: 'Kangaroo Mother Care (KMC) & Thermal Care',
-        equipment: ['1 manikin', 'KMC wrap/sling']
+        // equipment: ['1 manikin', 'KMC wrap/sling']
       },
       {
-        name: 'Breastfeeding & Newborn Feeding Practices',
-        equipment: ['Breastfeeding model', 'Breastfeeding position banner']
+        name: 'Breastfeeding Practice',
+        // equipment: ['Breastfeeding model', 'Breastfeeding position banner']
       },
       {
         name: 'Sepsis Management / Infection Control',
-        equipment: ['Stepsfor handhygiene chart']
+        // equipment: ['Stepsfor handhygiene chart']
       }
     ]
   },
   {
     name: 'Ophthalmology (ORASIS)',
     sub: 'Vision Care',
-    desc: '3D visualization, extraocular movement studies, and intraocular injection techniques.',
+    tagline: 'See • Learn • Practice',
+    desc: 'Step into the fascinating world of ophthalmology through interactive 3D visualisation, extraocular movements, illuminating the visual pathway through the art of light, and demonstration of intraocular injection techniques. The workshop aims to bridge the gap between theoretical knowledge and clinical application through immersive learning and hands-on simulation.',
     icon: 'fa-eye',
     date: '19th November 2026',
     duration: '9:00 AM to 12:30 PM',
@@ -196,29 +205,31 @@ const workshops = [
     stations: [
       {
         name: 'Cataract Surgery',
-        equipment: ['Operating loop (1)', 'Goat eyes (30)', 'Leather pad', 'Viscoelastics (1 box of 10)']
+        // equipment: ['Operating loop (1)', 'Goat eyes (30)', 'Leather pad', 'Viscoelastics (1 box of 10)']
       },
       {
         name: 'Intraocular Injections',
-        equipment: ['Saline (RL) - 2 bottles', 'Syringe (2cc) - 5', '26G needle - 20']
+        // equipment: ['Saline (RL) - 2 bottles', 'Syringe (2cc) - 5', '26G needle - 20']
       },
       {
         name: 'Visual Field Pathway',
-        equipment: [
-          'Model: cardboard box (11x8x2.5 inch)',
-          'RGB LED strip 12V (1 meter x 2 qty)',
-          '12V battery or 12V adaptor',
-          'Transparent pipe',
-          'Brain model: plastic ball (6 inch), air dry clay, cardboard, masking tape, glue, acrylic colour, hot glue',
-          'Eyeball model: plastic ball (4.5 inch), masking tape, tissue paper, Fevicol, chart paper, cardboard, poster colour, hot glue'
-        ]
+        // equipment: [
+        //   'Model: cardboard box (11x8x2.5 inch)',
+        //   'RGB LED strip 12V (1 meter x 2 qty)',
+        //   '12V battery or 12V adaptor',
+        //   'Transparent pipe',
+        //   'Brain model: plastic ball (6 inch), air dry clay, cardboard, masking tape, glue, acrylic colour, hot glue',
+        //   'Eyeball model: plastic ball (4.5 inch), masking tape, tissue paper, Fevicol, chart paper, cardboard, poster colour, hot glue'
+        // ]
       }
     ]
   },
   {
     name: 'Orthopaedics (OSTEON)',
     sub: 'Bone & Joint Care',
-    desc: 'Practical orthopedic training, surgical skills, and clinical reasoning for bone/joint conditions.',
+    tagline: 'Where Precision Meets Practice',
+    desc: 'Step beyond textbooks into the world of Orthopedics. This hands-on workshop brings together clinical reasoning, surgical skills, and practical techniques to transform theoretical knowledge into real-world experiences.',
+        // desc: 'Practical orthopedic training, surgical skills, and clinical reasoning for bone/joint conditions.',
     icon: 'fa-bone',
     date: '19th November 2026',
     duration: '9:00 AM to 12:30 PM',
@@ -228,39 +239,41 @@ const workshops = [
     requirements: 'Valid student ID, a notebook, and a pen. Wear comfortable clothing for practical sessions.',
     stations: [
       {
-        name: 'Instrument Identification, Clinical Examination & X-ray Interpretation',
-        equipment: ['Basic viva instruments', 'X-rays', 'Prosthetics & orthotics models']
+        name: 'Instrument Identification ,x - ray intrepretation, casting POP',
+        // equipment: ['Basic viva instruments', 'X-rays', 'Prosthetics & orthotics models']
       },
       {
-        name: 'Hands-on Orthopedic Procedures — Immobilization, Splinting, POP Casting, Drilling',
-        equipment: [
-          'Casting material – 4-inch POP cast set',
-          'Mannequin (full body)',
-          'Splints (Thomas, BSB)',
-          'IV tubes',
-          'Drilling machine with screws, bolts, and plate',
-          'Bones (specimens)',
-          'Immobilization - Neck cap'
-        ]
+        name: 'Hands on Orthopedic procedures - Suturing, splinting  ,drilling ',
+        // equipment: [
+        //   'Casting material – 4-inch POP cast set',
+        //   'Mannequin (full body)',
+        //   'Splints (Thomas, BSB)',
+        //   'IV tubes',
+        //   'Drilling machine with screws, bolts, and plate',
+        //   'Bones (specimens)',
+        //   'Immobilization - Neck cap'
+        // ]
       },
       {
-        name: 'Joint Injection Simulation & Suturing',
-        equipment: [
-          'Needle holders',
-          'Needles',
-          'Suturing wire - Fiber wire',
-          'Scalpel and blades',
-          'Syringes (5-10 cc, 10 units)',
-          'Surgical gloves',
-          'Forceps'
-        ]
+        name: 'Joint Injection simulation, Initial assessment of Trauma Case and Examination of Knee and hip',
+        // equipment: [
+        //   'Needle holders',
+        //   'Needles',
+        //   'Suturing wire - Fiber wire',
+        //   'Scalpel and blades',
+        //   'Syringes (5-10 cc, 10 units)',
+        //   'Surgical gloves',
+        //   'Forceps'
+        // ]
       }
     ]
   },
   {
     name: 'Pulmonology (AERION)',
     sub: 'Respiratory Care',
-    desc: 'Respiratory assessment, chest X-rays, spirometry, and oxygen therapy management.',
+    tagline: 'Exploring Every Breath',
+    desc: 'Every breath tells a story, and every timely intervention can make all the difference. Step into the world of Pulmonology through an immersive, hands-on workshop exploring respiratory assessment, diagnosis, and management. From interpreting chest X-rays and performing spirometry to understanding oxygen therapy devices and non-invasive ventilation (NIV), discover the clinical approach to asthma, COPD, and other respiratory disorders.',
+        // desc: 'Respiratory assessment, chest X-rays, spirometry, and oxygen therapy management.',
     icon: 'fa-lungs',
     date: '20th November 2026',
     duration: '9:00 AM to 1:00 PM',
@@ -270,34 +283,34 @@ const workshops = [
     requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
     stations: [
       {
-        name: 'Pulmonary Function Tests (PFT) — Spirometry',
-        equipment: ['Spirometer', 'Mouthpieces', 'Filters', 'Nose clips', 'Sample PFT reports']
+        name: 'Pulmonary Function Tests (PFT)',
+        // equipment: ['Spirometer', 'Mouthpieces', 'Filters', 'Nose clips', 'Sample PFT reports']
       },
       {
         name: 'Chest X-Ray, Asthma & COPD Management',
-        equipment: [
-          'Chest X-Ray films & view box/digital setup',
-          'Metered-Dose Inhaler (MDI) with Spacer',
-          'Dry Powder Inhalers (DPI): Accuhaler, Turbuhaler, Ellipta'
-        ]
+        // equipment: [
+          // 'Chest X-Ray films & view box/digital setup',
+          // 'Metered-Dose Inhaler (MDI) with Spacer',
+          // 'Dry Powder Inhalers (DPI): Accuhaler, Turbuhaler, Ellipta'
+        // ]
       },
       {
         name: 'Tension Pneumothorax & Emergency Airway',
-        equipment: ['Adult airway mannequin', 'Needle decompression kit/setup']
+        // equipment: ['Adult airway mannequin', 'Needle decompression kit/setup']
       },
       {
         name: 'Non-Invasive Ventilation (NIV), Oxygen Therapy & Nebulization',
-        equipment: [
-          'NIV Devices: BiPAP machine, CPAP machine',
-          'Pulse oximeter',
-          'Nasal cannula',
-          'High-flow nasal cannula (HFNC)',
-          'Simple face mask',
-          'Venturi face mask',
-          'Non-rebreather mask',
-          'Rebreather mask',
-          'Nebulization mask'
-        ]
+        // equipment: [
+        //   'NIV Devices: BiPAP machine, CPAP machine',
+        //   'Pulse oximeter',
+        //   'Nasal cannula',
+        //   'High-flow nasal cannula (HFNC)',
+        //   'Simple face mask',
+        //   'Venturi face mask',
+        //   'Non-rebreather mask',
+        //   'Rebreather mask',
+        //   'Nebulization mask'
+        // ]
       }
     ]
   }
@@ -393,7 +406,7 @@ export default function Workshops() {
             {/* --- Stations List with Equipment --- */}
             <div className="stations-section">
               <h4 className="stations-title">
-                <i className="fas fa-map-signs"></i> Workshop Stations & Equipment
+                <i className="fas fa-map-signs"></i> Workshop Stations
               </h4>
               <div className="stations-list">
                 {selected.stations.map((station, idx) => (

@@ -1635,6 +1635,89 @@ button.btn-register {
 }
 
 /* =========================================
+   PRIZES SECTION (Events)
+========================================= */
+
+.prizes-section {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, rgba(240, 165, 0, 0.12), rgba(123, 47, 247, 0.12));
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.prizes-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffd700, #7b2ff7, transparent);
+}
+
+.prizes-title {
+  color: #ffd700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+}
+
+.prizes-title i {
+  color: #ffd700;
+  font-size: 1.1rem;
+  animation: prizeGlow 2s ease-in-out infinite;
+}
+
+@keyframes prizeGlow {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.5)); }
+  50% { filter: drop-shadow(0 0 12px rgba(255, 215, 0, 1)); }
+}
+
+.prizes-content {
+  color: #fff8e7;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* =========================================
+   WORKSHOP TAGLINE
+========================================= */
+
+.workshop-tagline {
+  color: #f0a500;
+  font-style: italic;
+  font-size: 0.85rem;
+  margin-top: 0.35rem;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 0.03em;
+  opacity: 0.9;
+}
+
+/* =========================================
+   INFO BANNER THIRD ITEM (Special Prize)
+========================================= */
+
+.events-info-banner .info-item:nth-child(3) i {
+  color: #ffd700;
+  animation: prizeGlow 2s ease-in-out infinite;
+}
+
+.events-info-banner .info-item:nth-child(3) strong {
+  color: #ffd700;
+}
+
+/* =========================================
    FOOTER
 ========================================= */
 
