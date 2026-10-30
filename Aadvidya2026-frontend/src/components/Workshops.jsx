@@ -104,7 +104,7 @@ const workshops = [
     desc: 'From securing an airway to restoring a heartbeat, from administering emergency injections to stabilising traumatic injuries, every station is designed to transform medical knowledge into life-saving skills. Explore airway and breathing management, Vascular acess and cardiopulmonary resuscitation (CPR), defibrillation, and trauma immobilisation.',
     icon: 'fa-truck-medical',
     date: '20th November 2026',
-    duration: '9:00 AM to 1:00 PM',
+    duration: '9:00 AM to 01:00 PM',
     fee: '₹999',
     instructions: 'Follow all hospital ward safety and hygiene protocols. Active participation in physical simulations is expected.',
     requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
@@ -134,7 +134,7 @@ const workshops = [
     desc: 'An intensive, hands-on workshop designed to enhance clinical skills in obstetric emergencies and childbirth management. Explore the stages and mechanism of normal vaginal delivery, identify breech presentations, and practise essential delivery techniques using obstetric mannequins. Focus on recognition and initial management of postpartum haemorrhage (PPH) and episiotomy through interactive sessions.',
     icon: 'fa-baby',
     date: '20th November 2026',
-    duration: '9:00 AM to 1:00 PM',
+    duration: '9:00 AM to 01:00 PM',
     fee: '₹799',
     instructions: 'Follow all hospital ward safety and hygiene protocols. Maintain professional decorum during practical sessions.',
     requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
@@ -176,19 +176,19 @@ const workshops = [
     stations: [
       {
         name: 'Neonatal Resuscitation Programme (NRP)',
-        // equipment: ['3 neonatal manikins (main)', 'ET intubation setup (1)', 'BMV (Bag and Mask Ventilation)', 'Preterm baby manikin (1)', 'Term baby manikin (1)', 'Laryngoscope', 'Ambu bag', 'NT catheter (2.5, 3mm)']
+        equipment: ['Training in initial newborn assessment and resuscitation, including bag-and-mask ventilation.']
       },
       {
         name: 'Kangaroo Mother Care (KMC) & Thermal Care',
-        // equipment: ['1 manikin', 'KMC wrap/sling']
+        equipment: ['Learning skin-to-skin contact and methods to prevent hypothermia in newborns.']
       },
       {
-        name: 'Breastfeeding Practice',
-        // equipment: ['Breastfeeding model', 'Breastfeeding position banner']
+        name: 'Breastfeeding & Newborn Feeding Practices',
+        equipment: ['Understanding early initiation, correct latching, positioning, and exclusive breastfeeding.']
       },
       {
         name: 'Sepsis Management / Infection Control',
-        // equipment: ['Stepsfor handhygiene chart']
+        equipment: ['Learning hand hygiene, aseptic techniques, and infection prevention practices in neonatal care.']
       }
     ]
   },
@@ -227,7 +227,7 @@ const workshops = [
         // desc: 'Practical orthopedic training, surgical skills, and clinical reasoning for bone/joint conditions.',
     icon: 'fa-bone',
     date: '19th November 2026',
-    duration: '9:00 AM to 12:30 PM',
+    duration: '9:00 AM to 01:00 PM',
     fee: '₹699',
     // contact: 'Bandhavi (+91 86886 13121), Tarani (+91 63019 41986)',
     instructions: 'Follow all hospital ward safety and hygiene protocols. Hands-on participation in casting and splinting.',

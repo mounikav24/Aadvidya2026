@@ -172,8 +172,8 @@ const passiveEvents = [
     ]
   },
   {
-    name: 'Path Mystery Box',
-    sub: 'Pathological Images',
+    name: 'Pathognomon',
+    sub: 'Path Mystery Box',
     desc: 'Tiny clues. Pathognomonic. It\'s in the details. Examine the pathological images, look for the subtle clues, and identify the disease. From histology to special stains, every detail matters.',
     icon: 'fa-microscope',
     fee: 'FREE',
