@@ -198,7 +198,7 @@ const workshops = [
     tagline: 'See • Learn • Practice',
     desc: 'Step into the fascinating world of ophthalmology by  experiencing the art of ophthalmic surgery firsthand with a hands-on cataract surgery session using goat eyes under expert guidance and illuminating  the visual pathway through the art of light, demonstration of intraocular injections techniques.The workshop aims to  bridge the gap between  theoretical knowledge and  clinical application through immersive learning and Hands-on simulation.',
     icon: 'fa-eye',
-    date: '19th November 2026',
+    date: '20th November 2026',
     duration: '9:00 AM to 12:30 PM',
     fee: '₹599',
     // contact: 'Yogitha (+91 77290 67977), Sai Shivani',
@@ -224,7 +224,6 @@ const workshops = [
     sub: 'Bone & Joint Care',
     tagline: 'Where Precision Meets Practice',
     desc: 'Step beyond textbooks into the world of Orthopedics. This hands-on workshop brings together clinical reasoning, surgical skills, and practical techniques to transform theoretical knowledge into real-world experiences.',
-        // desc: 'Practical orthopedic training, surgical skills, and clinical reasoning for bone/joint conditions.',
     icon: 'fa-bone',
     date: '19th November 2026',
     duration: '9:00 AM to 01:00 PM',
@@ -234,32 +233,26 @@ const workshops = [
     requirements: 'Valid student ID, a notebook, and a pen. Wear comfortable clothing for practical sessions.',
     stations: [
       {
-        name: 'Instrument Identification ,x - ray intrepretation, casting POP',
-        // equipment: ['Basic viva instruments', 'X-rays', 'Prosthetics & orthotics models']
+        name: 'Orthopedic Basics and Casting',
+        equipment: [
+            'An introductory station designed to familiarise participants with basic instruments and radiological techniques.',
+            'Hands on experience in POP preparation and application for fracture immobilisation.']
       },
       {
-        name: 'Hands on Orthopedic procedures - Suturing, splinting  ,drilling ',
-        // equipment: [
-        //   'Casting material – 4-inch POP cast set',
-        //   'Mannequin (full body)',
-        //   'Splints (Thomas, BSB)',
-        //   'IV tubes',
-        //   'Drilling machine with screws, bolts, and plate',
-        //   'Bones (specimens)',
-        //   'Immobilization - Neck cap'
-        // ]
+        name: 'Hands on Orthopedic procedures',
+        equipment: [
+          'Provides practical exposure to essential orthopedic procedures.',
+          'Learning and practising basic suturing techniques, needle handling and knot tying.',
+          'Understand and practice basic drilling and splinting techniques.',
+        ]
       },
       {
-        name: 'Joint Injection simulation, Initial assessment of Trauma Case and Examination of Knee and hip',
-        // equipment: [
-        //   'Needle holders',
-        //   'Needles',
-        //   'Suturing wire - Fiber wire',
-        //   'Scalpel and blades',
-        //   'Syringes (5-10 cc, 10 units)',
-        //   'Surgical gloves',
-        //   'Forceps'
-        // ]
+        name: 'Clinical Orthopedic Skills',
+        equipment: [
+          'A clinical oriented station where participants will learn the initial approach to trauma cases.',
+          'Can learn about principles of joint injection and can perform it on a model.',
+          'Practice examination of the knee and hip joints strengthning their clinical assessment skills.',
+        ]
       }
     ]
   },
