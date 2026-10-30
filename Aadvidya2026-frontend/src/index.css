@@ -976,6 +976,105 @@ button.btn-register {
 }
 
 /* =========================================
+   ADDITIONAL TOPICS SECTION
+========================================= */
+
+.additional-topics-section {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: rgba(10, 10, 26, 0.5);
+  border: 1px solid rgba(123, 47, 247, 0.25);
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.additional-topics-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #7b2ff7, #f0a500, transparent);
+}
+
+.additional-topics-title {
+  color: #c77dff;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+}
+
+.additional-topics-title i {
+  color: #c77dff;
+  font-size: 1rem;
+}
+
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.topic-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 1rem;
+  background: rgba(26, 26, 62, 0.5);
+  border-radius: 0.75rem;
+  border-left: 3px solid #c77dff;
+  transition: all 0.25s ease;
+}
+
+.topic-card:hover {
+  background: rgba(123, 47, 247, 0.08);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(123, 47, 247, 0.15);
+}
+
+.topic-icon {
+  color: #c77dff;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.topic-content h5 {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.topic-content p {
+  color: #c8c8e0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .additional-topics-section {
+    padding: 1rem;
+  }
+  .topics-grid {
+    grid-template-columns: 1fr;
+  }
+  .topic-card {
+    padding: 0.85rem;
+  }
+}
+
+/* =========================================
    WORKSHOP STATIONS LIST WITH EQUIPMENT
 ========================================= */
 

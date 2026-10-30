@@ -1,45 +1,50 @@
 import React, { useState } from 'react'
 
 const workshops = [
-  {
-    name: 'BLS (KAIROS)',
-    sub: 'Basic Life Support',
-    tagline: 'Learn with Purpose. Practice with Precision. Heal with Compassion.',
-    desc: 'An intensive, hands-on workshop designed to impart essential life-saving skills, encompassing CPR, choking management across all age groups, disaster preparedness, emergency triage, and rescue operations.',
-    // desc: 'Master CPR, choking management, disaster preparedness, and emergency rescue operations.',
-    icon: 'fa-heart-pulse',
-    date: '19th November 2026',
-    duration: '9:00 AM to 3:30 PM',
-    fee: '₹899',
-    // contact: 'GR. Bhargavi (9347801285), K. Neha (6309319218)',
-    instructions: 'Follow all hospital ward safety and hygiene protocols. Active participation in physical simulations is expected.',
-    requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
-    // equipment: [
-    //   'Adult CPR Manikin',
-    //   'Paediatric CPR Manikin',
-    //   'Airway Manikin',
-    //   'Adult Choking Manikin',
-    //   'Automated External Defibrillator (AED) - to be confirmed'
-    // ],
-    stations: [
-      {
-        name: 'Adult CPR and AED',
-        // equipment: ['Adult CPR Manikin']
-      },
-      {
-        name: 'Paediatric CPR',
-        // equipment: ['Paediatric CPR Manikin']
-      },
-      {
-        name: 'Airway Management',
-        // equipment: ['Airway Manikin']
-      },
-      {
-        name: 'Choking Management',
-        // equipment: ['Adult Choking Manikin']
-      }
-    ]
-  },
+   {
+  name: 'BLS (KAIROS)',
+  sub: 'Basic Life Support',
+  tagline: 'Learn with Purpose. Practice with Precision. Heal with Compassion.',
+  desc: 'An intensive, hands-on workshop designed to impart essential life-saving skills, encompassing CPR, choking management across all age groups, disaster preparedness, emergency triage, and rescue operations.',
+  icon: 'fa-heart-pulse',
+  date: '19th November 2026',
+  duration: '9:00 AM to 3:30 PM',
+  fee: '₹899',
+  instructions: 'Follow all hospital ward safety and hygiene protocols. Active participation in physical simulations is expected.',
+  requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
+  stations: [
+    {
+      name: 'Adult CPR and AED',
+      equipment: ['Recognize cardiac arrest and learn life-saving CPR and AED techniques.']
+    },
+    {
+      name: 'Paediatric CPR',
+      equipment: ['Explore age-appropriate CPR techniques for infants and children.']
+    },
+    {
+      name: 'Airway Management',
+      equipment: ['Learn airway maintenance and practise essential breathing support techniques.']
+    },
+    {
+      name: 'Choking Management',
+      equipment: ['Recognize airway obstruction and practise life-saving choking relief techniques.']
+    }
+  ],
+  additionalTopics: [
+    {
+      title: 'Disaster Preparedness',
+      desc: 'Prepare, respond, and stay safe during disasters.'
+    },
+    {
+      title: 'Triage',
+      desc: 'Assess and prioritize patients in emergencies.'
+    },
+    {
+      title: 'Rescue Operations',
+      desc: 'Learn safe and effective rescue techniques.'
+    }
+  ]
+},
   {
     name: 'BSS (PRAXIS)',
     sub: 'Basic Surgical Skills',
@@ -56,7 +61,7 @@ const workshops = [
     stations: [
       {
         name: 'Suturing',
-        // equipment: ['Silicone pads (6)', 'Suture sets (needle holder, forceps, scissors)', 'Silk sutures', 'Sharps bin']
+        // equipment: ['Learn the art of suturing and practice on realistic models under expert guidance.']
       },
       {
         name: 'Hand Knots',
@@ -96,31 +101,29 @@ const workshops = [
     name: 'Emergency & Trauma Care (AUXILIUM)',
     sub: 'Emergency Care',
     tagline: 'From Securing an Airway to Restoring a Heartbeat',
-    desc: 'From securing an airway to restoring a heartbeat, from administering emergency injections to stabilising traumatic injuries, every station is designed to transform medical knowledge into life-saving skills. Explore airway and breathing management, IV and cardiopulmonary resuscitation (CPR), defibrillation, and trauma immobilisation.',
-    // desc: 'Securing airways, stabilizing traumatic injuries, CPR, defibrillation, and trauma immobilisation.',
+    desc: 'From securing an airway to restoring a heartbeat, from administering emergency injections to stabilising traumatic injuries, every station is designed to transform medical knowledge into life-saving skills. Explore airway and breathing management, Vascular acess and cardiopulmonary resuscitation (CPR), defibrillation, and trauma immobilisation.',
     icon: 'fa-truck-medical',
     date: '20th November 2026',
     duration: '9:00 AM to 1:00 PM',
     fee: '₹999',
-    // contact: 'K. Sreeja, Sameeksha, Manaswini',
     instructions: 'Follow all hospital ward safety and hygiene protocols. Active participation in physical simulations is expected.',
     requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
     stations: [
       {
         name: 'Primary Breathing / Airway Management',
-        // equipment: ['Airway mannequin (up to lungs)', 'Different oxygen-delivery masks', 'Laryngeal tube', 'Oxygen mask', 'Endotracheal tube', 'Rebreathing mask', 'Ambu bag']
+        equipment: ['Master the art of securing the airway through airway assessment, oxygen delivery, and endotracheal intubation demonstration through simulation models']
       },
       {
-        name: 'IV and IM Injection',
-        // equipment: ['Upper-limb mannequin', 'Gloves', 'NS, DNS, and RL fluids', 'Tourniquet', 'Different types of syringes', 'IV infusion set', 'Sanitiser', 'Cannulas (14G, 16G, 18G, 20G, 22G, 24G)', 'Sterile swabs']
+        name: 'Vascular acess',
+        equipment: ['Explore  hands-on practice in IV cannulation, IM injections, and  aseptic procedures ']
       },
       {
         name: 'Defibrillation and CPR',
-        // equipment: ['CPR mannequin', 'Defibrillator machine']
+        equipment: ['Experience life-saving cardiac interventions through CPR techniques, cardiac arrest management, and defibrillator training.']
       },
       {
         name: 'Immobilisation',
-        // equipment: ['Full-body mannequin', 'Splint', 'Philadelphia collars', 'Spineboard', 'Roller gauze']
+        equipment: ['Learn to protect trauma patients through Philadelphia collar application, fracture splinting, and safe patient handling techniques.']
       }
     ]
   },
@@ -128,34 +131,33 @@ const workshops = [
     name: 'OBGY (VITA IN TRANSITU)',
     sub: 'Obstetrics & Gynaecology',
     tagline: 'Life in Transition',
-    desc: 'An intensive, hands-on workshop designed to enhance clinical skills in obstetric emergencies and childbirth management. Explore the stages and mechanism of normal vaginal delivery, identify breech presentations, and practise essential delivery techniques using obstetric mannequins. Focus on recognition and initial management of postpartum haemorrhage (PPH) and eclampsia through interactive case scenarios.',
+    desc: 'An intensive, hands-on workshop designed to enhance clinical skills in obstetric emergencies and childbirth management. Explore the stages and mechanism of normal vaginal delivery, identify breech presentations, and practise essential delivery techniques using obstetric mannequins. Focus on recognition and initial management of postpartum haemorrhage (PPH) and episiotomy through interactive sessions.',
     icon: 'fa-baby',
     date: '20th November 2026',
     duration: '9:00 AM to 1:00 PM',
     fee: '₹799',
-    // contact: 'Tejashree, Gayatri',
     instructions: 'Follow all hospital ward safety and hygiene protocols. Maintain professional decorum during practical sessions.',
     requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
     stations: [
       {
         name: 'Normal Vaginal Delivery (NVD)',
-        // equipment: ['NVD mannequin']
+        equipment: ['Demonstration of mechanism of normal labour, stages and conduction of labour, with step-by-step hands-on training on normal vaginal delivery on mannequin.']
       },
       {
         name: 'Breech Delivery',
-        // equipment: ['Breech-delivery mannequin']
+        equipment: ['Diagnosis of breech presentation, principles of assisted breech delivery, maneuvers for delivery of after-coming head and arms, with hands-on practice to ensure safe maternal and fetal outcome.']
       },
       {
         name: 'Postpartum Haemorrhage (PPH) & Episiotomy',
-        // equipment: ['PPH kit', 'Uterus model', 'Suturing kits (2)']
+        equipment: ['Identification and management of Postpartum Haemorrhage including the indications, technique of episiotomy and its repair.']
       },
       {
         name: 'Cardiotocography (CTG)',
-        // equipment: ['CTG machine (available in department)']
+        equipment: ['Basics of CTG, understanding baseline, variability, accelerations and decelerations, interpretation of normal, suspicious traces and timely decision making for fetal well-being.']
       },
       {
         name: 'Neonatal Resuscitation',
-        // equipment: ['Neonatal mannequin']
+        equipment: ['Systematic approach to newborn assessment at birth, initial steps of warming, drying, stimulation, and hands-on training on airway management and bag-and-mask ventilation as per NRP guidelines.']
       }
     ]
   },
@@ -194,33 +196,26 @@ const workshops = [
     name: 'Ophthalmology (ORASIS)',
     sub: 'Vision Care',
     tagline: 'See • Learn • Practice',
-    desc: 'Step into the fascinating world of ophthalmology through interactive 3D visualisation, extraocular movements, illuminating the visual pathway through the art of light, and demonstration of intraocular injection techniques. The workshop aims to bridge the gap between theoretical knowledge and clinical application through immersive learning and hands-on simulation.',
+    desc: 'Step into the fascinating world of ophthalmology by  experiencing the art of ophthalmic surgery firsthand with a hands-on cataract surgery session using goat eyes under expert guidance and illuminating  the visual pathway through the art of light, demonstration of intraocular injections techniques.The workshop aims to  bridge the gap between  theoretical knowledge and  clinical application through immersive learning and Hands-on simulation.',
     icon: 'fa-eye',
     date: '19th November 2026',
     duration: '9:00 AM to 12:30 PM',
     fee: '₹599',
     // contact: 'Yogitha (+91 77290 67977), Sai Shivani',
-    instructions: 'Venue: Ophthalmology Ward. Follow all hospital ward safety and hygiene protocols. Ensure to have your own gloves and masks for practical sessions.',
+    instructions: 'Venue: Ophthalmology Ward. Follow all hospital ward safety and hygiene protocols.',
     requirements: 'Valid student ID, a notebook, and a pen. Comfortable attire recommended for practical sessions.',
     stations: [
       {
         name: 'Cataract Surgery',
-        // equipment: ['Operating loop (1)', 'Goat eyes (30)', 'Leather pad', 'Viscoelastics (1 box of 10)']
+        equipment: ['Explore cataract surgery step by step through hands on practice on goat eyes in an interactive simulation experience.']
       },
       {
         name: 'Intraocular Injections',
-        // equipment: ['Saline (RL) - 2 bottles', 'Syringe (2cc) - 5', '26G needle - 20']
+        equipment: ['Learn the principles of intraocular injections and practise injection techniques on goat eyes under guided supervision.']
       },
       {
         name: 'Visual Field Pathway',
-        // equipment: [
-        //   'Model: cardboard box (11x8x2.5 inch)',
-        //   'RGB LED strip 12V (1 meter x 2 qty)',
-        //   '12V battery or 12V adaptor',
-        //   'Transparent pipe',
-        //   'Brain model: plastic ball (6 inch), air dry clay, cardboard, masking tape, glue, acrylic colour, hot glue',
-        //   'Eyeball model: plastic ball (4.5 inch), masking tape, tissue paper, Fevicol, chart paper, cardboard, poster colour, hot glue'
-        // ]
+        equipment: ['Discover the fascinating connection between the eyes and brain through immersive 3D visualisation.']
       }
     ]
   },
@@ -295,7 +290,7 @@ const workshops = [
         // ]
       },
       {
-        name: 'Tension Pneumothorax & Emergency Airway',
+        name: 'Needle Decompression (Airway Management)',
         // equipment: ['Adult airway mannequin', 'Needle decompression kit/setup']
       },
       {
@@ -429,6 +424,28 @@ export default function Workshops() {
                 ))}
               </div>
             </div>
+
+            {/* --- Additional Topics (if any) --- */}
+            {selected.additionalTopics && selected.additionalTopics.length > 0 && (
+              <div className="additional-topics-section">
+                <h4 className="additional-topics-title">
+                  <i className="fas fa-star"></i> Additional Topics Covered
+                </h4>
+                <div className="topics-grid">
+                  {selected.additionalTopics.map((topic, idx) => (
+                    <div key={idx} className="topic-card">
+                      <div className="topic-icon">
+                        <i className="fas fa-check-circle"></i>
+                      </div>
+                      <div className="topic-content">
+                        <h5>{topic.title}</h5>
+                        <p>{topic.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <button className="btn btn-primary" onClick={closeAndRegister}>Register Now</button>
           </div>
