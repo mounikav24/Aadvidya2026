@@ -86,7 +86,7 @@ const activeEvents = [
 
 const passiveEvents = [
   {
-    name: 'Pulse',
+    name: 'Pulse X',
     sub: 'Med Hunt',
     desc: 'A thrilling medical treasure hunt where teams decode clues, solve challenges, and navigate a trail of medical knowledge, observation, and teamwork.',
     icon: 'fa-map-location-dot',
@@ -135,22 +135,6 @@ const passiveEvents = [
       'Do not tamper with evidence, interfere with other teams, or engage in unauthorized information sharing. Follow all bidding and exchange rules.',
       'Participants must follow the instructions given by the event hosts.',
       'The judges decision will be final and binding.'
-    ]
-  },
-  {
-    name: 'Clinical Quickfire',
-    sub: 'Rapid Diagnosis',
-    desc: 'Diagnose the signs. Choose the drug. Beat the clock. Put your medical knowledge and reflexes to the test — identify diseases from clinical signs or pick the correct first-line drug from four tricky options.',
-    icon: 'fa-bolt',
-    fee: 'FREE',
-    rules: [
-      'Open to all registered participants',
-      'Speed-based rounds with strict time limits',
-      'One answer per question — no changes allowed',
-      'No mobile phones or external devices',
-      'Elimination rounds may apply',
-      'Ties will be resolved through tiebreaker questions',
-      'Decision of the quizmaster is final'
     ]
   },
   {
