@@ -32,11 +32,14 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: Aadvidya2026-frontend/package-lock.json
 
       - name: Install dependencies
+        working-directory: ./Aadvidya2026-frontend
         run: npm ci
 
       - name: Build React application
+        working-directory: ./Aadvidya2026-frontend
         run: npm run build
 
       - name: Configure GitHub Pages
@@ -45,7 +48,7 @@ jobs:
       - name: Upload built website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./Aadvidya2026-frontend/dist
 
       - name: Deploy website
         id: deployment
