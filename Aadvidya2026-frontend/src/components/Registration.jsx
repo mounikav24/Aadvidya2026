@@ -100,12 +100,36 @@ export default function Registration() {
     }
   }
 
-  const handleActiveEventSelect = (event) => {
-    if (isTimeSlotTaken(event.timeSlot)) {
-      toast.error(`You already have an activity scheduled for this day (${event.timeSlot}). You can only choose 1 activity per day.`)
-      return
+  
+const handleActiveEventSelect = (event) => {
+  setSelectedItems((prev) => {
+    // If the same event is tapped again, deselect it
+    if (prev.activeEvent?.id === event.id) {
+      return {
+        ...prev,
+        activeEvent: null
+      }
     }
-    setSelectedItems({ ...selectedItems, activeEvent: event })
+
+    // Check whether another activity occupies this day
+      const isTaken =
+        prev.activeEvent?.timeSlot === event.timeSlot ||
+        prev.passiveEvents.some(e => e.timeSlot === event.timeSlot) ||
+        prev.workshops.some(w => w.timeSlot === event.timeSlot)
+
+      if (isTaken) {
+        toast.error(
+          `You already have an activity scheduled for this day (${event.timeSlot}). You can only choose 1 activity per day.`
+        )
+        return prev
+      }
+
+      // Select the newly tapped event
+      return {
+        ...prev,
+        activeEvent: event
+      }
+    })
   }
 
   const handlePassiveEventToggle = (event) => {
@@ -404,7 +428,7 @@ export default function Registration() {
                     <span>Subtotal</span><span>₹{calculateSubtotal().toFixed(2)}</span>
                   </div>
                   <div className="reg-summary-row">
-                    <span>Platform Fee (2%)</span><span>₹{calculateTax().toFixed(2)}</span>
+                    <span>Platform Fee</span><span>₹{calculateTax().toFixed(2)}</span>
                   </div>
                   <div className="reg-summary-total">
                     <span>Final Amount Payable</span><span>₹{calculateTotal().toFixed(2)}</span>

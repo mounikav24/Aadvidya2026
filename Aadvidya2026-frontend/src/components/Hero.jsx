@@ -203,7 +203,7 @@ export default function Hero() {
         <div className="helix-zone"></div>
 
         <div className="hero-buttons">
-          <button className="btn btn-primary" onClick={() => scrollTo('register')}>Stay Tuned, Registrations Open Soon!</button> 
+          <button className="btn btn-primary" onClick={() => scrollTo('register')}>Registrations are Open!</button> 
           <button className="btn btn-secondary" onClick={() => scrollTo('events')}>Explore Events <i className="fas fa-arrow-right"></i></button>
         </div>
       </div>
