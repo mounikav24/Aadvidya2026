@@ -4,6 +4,7 @@ const activeEvents = [
   {
     name: 'Symptoma',
     sub: 'Case Presentation',
+    date: '19th & 20th November', // Added Date
     desc: 'A showcase of clinical acumen, diagnostic reasoning, and evidence-based decision-making through the art of clinical case analysis.',
     icon: 'fa-stethoscope',
     fee: '₹199',
@@ -26,6 +27,7 @@ const activeEvents = [
   {
     name: 'Hephaestus',
     sub: '3D Model Making',
+    date: '20th November', // Added Date
     desc: 'Bring ideas to life beyond textbooks! Showcase your creativity and medical knowledge through innovative 3D models that transform complex concepts into stunning, realistic, and interactive masterpieces. Imagine it. Build it. Bring medicine to life!',
     icon: 'fa-cubes',
     fee: '₹199',
@@ -46,6 +48,7 @@ const activeEvents = [
   {
     name: 'Eureka',
     sub: 'Quiz',
+    date: '19th November', // Added Date
     desc: 'A stimulating battle of intellect, precision, and clinical acumen. Eureka challenges aspiring physicians to push the boundaries of their medical knowledge, sharpen their diagnostic reasoning, and excel under pressure.',
     icon: 'fa-brain',
     fee: 'FREE',
@@ -68,6 +71,7 @@ const activeEvents = [
   {
     name: 'Graphe',
     sub: 'Poster Presentation',
+    date: '19th & 20th November', // Added Date
     desc: 'Present your ideas, showcase your knowledge, and turn science into a visual masterpiece. Think creatively. Present confidently. Make an impact!',
     icon: 'fa-chart-column',
     fee: '₹199',
@@ -88,6 +92,7 @@ const passiveEvents = [
   {
     name: 'Pulse X',
     sub: 'Med Hunt',
+    date: '19th November', // Added Date
     desc: 'A thrilling medical treasure hunt where teams decode clues, solve challenges, and navigate a trail of medical knowledge, observation, and teamwork.',
     icon: 'fa-map-location-dot',
     fee: 'FREE',
@@ -106,6 +111,7 @@ const passiveEvents = [
   {
     name: 'Hades Differential',
     sub: 'Hang or Diagnose',
+    date: '19th November', // Added Date
     desc: 'Crack the case before the diagnosis gets hanged. Because medicine isn\'t just about memorizing facts — it\'s about connecting clues to find the answer!',
     icon: 'fa-user-doctor',
     fee: 'FREE',
@@ -122,6 +128,7 @@ const passiveEvents = [
   {
     name: 'Mortem Mysteria',
     sub: 'Crime Scene Investigation',
+    date: '19th November', // Added Date
     desc: 'Step into the shoes of a forensic investigator and put your observation, analytical thinking and medical knowledge to the test. Explore the clues, examine the evidence, and piece together the truth — before it\'s too late.',
     icon: 'fa-magnifying-glass',
     fee: 'FREE',
@@ -140,6 +147,7 @@ const passiveEvents = [
   {
     name: 'Dermal Duality',
     sub: 'Face Painting',
+    date: '20th November', // Added Date
     desc: 'A face-painting experience where art meets anatomy, contrast meets creativity, and every stroke tells a story. Create the illusion of exposed muscles, bones, anatomical structures, or futuristic cybernetic patterns on the face.',
     icon: 'fa-palette',
     fee: 'FREE',
@@ -157,6 +165,7 @@ const passiveEvents = [
   {
     name: 'Psychiatric Escape Room',
     sub: 'Mind Games',
+    date: '19th & 20th November', // Added Date
     desc: 'Think you can outsmart your own brain? Step into a world where nothing is as it seems, clues are sus, and every second counts. Decode psychological mysteries, crack mind-bending puzzles, and connect the dots before your time runs out.',
     icon: 'fa-key',
     fee: '₹100',
@@ -174,6 +183,7 @@ const passiveEvents = [
   {
     name: 'Pathognomon',
     sub: 'Path Mystery Box',
+    date: '19th November', // Added Date
     desc: 'Tiny clues. Pathognomonic. It\'s in the details. Examine the pathological images, look for the subtle clues, and identify the disease. From histology to special stains, every detail matters.',
     icon: 'fa-microscope',
     fee: 'FREE',
@@ -190,6 +200,7 @@ const passiveEvents = [
   {
     name: 'Medical Taboo',
     sub: 'Word Game',
+    date: '20th November', // Added Date
     desc: 'Think fast, speak smart. Some topics are off the charts — guess the medical term without using the restricted words!',
     icon: 'fa-comments',
     fee: 'FREE',
@@ -206,6 +217,7 @@ const passiveEvents = [
   {
     name: 'Just a Minute',
     sub: 'Arrheton',
+    date: '19th November', // Added Date
     desc: 'One minute. One topic. Endless possibilities. Speak impromptu on medical topics — think, speak, and keep it going!',
     icon: 'fa-microphone',
     fee: 'FREE',
@@ -222,6 +234,7 @@ const passiveEvents = [
   {
     name: 'Spell Bee',
     sub: 'Gelorthography',
+    date: '20th November', // Added Date
     desc: 'Spell it right, think it fast! Test your spelling speed and accuracy with medical terms.',
     icon: 'fa-spell-check',
     fee: 'FREE',
@@ -238,6 +251,7 @@ const passiveEvents = [
   {
     name: 'Word Scramble',
     sub: 'Lexis',
+    date: '20th November', // Added Date
     desc: 'Unscramble the chaos, find the hidden words. Race against time to decode medical terminology.',
     icon: 'fa-font',
     fee: 'FREE',
@@ -254,6 +268,7 @@ const passiveEvents = [
   {
     name: 'Med Crossword',
     sub: 'Syndesis',
+    date: '20th November', // Added Date
     desc: 'Decode the clues, complete the grid. A classic puzzle format with a medical twist.',
     icon: 'fa-table-cells',
     fee: 'FREE',
@@ -270,6 +285,7 @@ const passiveEvents = [
   {
     name: 'Med Dumbcharades',
     sub: 'Mimesis',
+    date: '20th November', // Added Date
     desc: 'Act it out, guess it right — it\'s all in the signs! A fun team game of charades with medical terms.',
     icon: 'fa-masks-theater',
     fee: 'FREE',
@@ -286,6 +302,7 @@ const passiveEvents = [
   {
     name: 'Wrong Answers Only',
     sub: 'Creative Chaos',
+    date: '19th November', // Added Date
     desc: 'Be bold, be wild, and say the most ridiculous thing. In this game, wrong is the new right!',
     icon: 'fa-face-laugh-squint',
     fee: 'FREE',
@@ -393,8 +410,8 @@ export default function Events() {
             <p className="flash-card-desc">{selectedEvent.desc}</p>
             <div className="flash-card-details">
               <div className="detail-item">
-                <span className="detail-label"><i className="fas fa-location-dot"></i> Venue</span>
-                <span className="detail-value">MNR Campus (TBA)</span>
+                <span className="detail-label"><i className="fas fa-calendar-alt"></i> Date</span>
+                <span className="detail-value">{selectedEvent.date}</span>
               </div>
               <div className="detail-item">
                 <span className="detail-label"><i className="fas fa-tag"></i> Fee</span>
@@ -409,10 +426,6 @@ export default function Events() {
               <div className="detail-item">
                 <span className="detail-label"><i className="fas fa-users"></i> Participation</span>
                 <span className="detail-value">{selectedEvent.participation}</span>
-              </div>
-              <div className="detail-item full-width">
-                <span className="detail-label"><i className="fas fa-user-tie"></i> Contact</span>
-                <span className="detail-value">TBA</span>
               </div>
             </div>
 
