@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
-import { QRCodeSVG } from 'qrcode.react' // <-- ADDED DYNAMIC QR CODE IMPORT
+import { QRCodeSVG } from 'qrcode.react'
 
 // --- PAYMENT CONFIGURATION ---
-// TODO: Replace with your ACTUAL UPI ID (e.g., "team.aadvidya2026@okicici" or "yourname@upi")
 const UPI_ID = "8309915874@upi"; 
 const PAYEE_NAME = "BODAPATLA VIJAY KANTH";
 
 // --- DATA WITH ID, FEEVALUE, AND TIMESLOT FOR VALIDATION ---
+// Note: Events happening on BOTH days now have timeSlot as an array: ['19NOV', '20NOV']
 const activeEvents = [
-  { id: 'E_SYMPTOMA', feeValue: 199, timeSlot: '19NOV', name: 'Symptoma', sub: 'Case Presentation', fee: '₹199' },
-  { id: 'E_HEPHAESTUS', feeValue: 199, timeSlot: '20NOV', name: 'Hephaestus', sub: '3D Model Making', fee: '₹199' },
+  { id: 'E_SYMPTOMA', feeValue: 199, timeSlot: ['19NOV', '20NOV'], name: 'Symptoma', sub: 'Case Presentation', fee: '₹199' },
+  { id: 'E_HEPHAESTUS', feeValue: 199, timeSlot: ['19NOV', '20NOV'], name: 'Hephaestus', sub: '3D Model Making', fee: '₹199' },
   { id: 'E_EUREKA', feeValue: 0, timeSlot: '19NOV', name: 'Eureka', sub: 'Quiz', fee: 'FREE' },
-  { id: 'E_GRAPHE', feeValue: 199, timeSlot: '20NOV', name: 'Graphe', sub: 'Poster Presentation', fee: '₹199' }
+  { id: 'E_GRAPHE', feeValue: 199, timeSlot: ['19NOV', '20NOV'], name: 'Graphe', sub: 'Poster Presentation', fee: '₹199' }
 ]
 
 const passiveEvents = [
@@ -20,7 +20,7 @@ const passiveEvents = [
   { id: 'E_HADES', feeValue: 0, timeSlot: '19NOV', name: 'Hades Differential', sub: 'Hang or Diagnose', fee: 'FREE' },
   { id: 'E_MORTEM', feeValue: 0, timeSlot: '19NOV', name: 'Mortem Mysteria', sub: 'Crime Scene Investigation', fee: 'FREE' },
   { id: 'E_DERMAL', feeValue: 0, timeSlot: '20NOV', name: 'Dermal Duality', sub: 'Face Painting', fee: 'FREE' },
-  { id: 'E_PSYCH_ESCAPE', feeValue: 100, timeSlot: '20NOV', name: 'Psychiatric Escape Room', sub: 'Mind Games', fee: '₹100' },
+  { id: 'E_PSYCH_ESCAPE', feeValue: 100, timeSlot: ['19NOV', '20NOV'], name: 'Psychiatric Escape Room', sub: 'Mind Games', fee: '₹100' },
   { id: 'E_PATHO', feeValue: 0, timeSlot: '19NOV', name: 'Pathognomon', sub: 'Path Mystery Box', fee: 'FREE' },
   { id: 'E_TABOO', feeValue: 0, timeSlot: '20NOV', name: 'Medical Taboo', sub: 'Word Game', fee: 'FREE' },
   { id: 'E_JAM', feeValue: 0, timeSlot: '19NOV', name: 'Just a Minute', sub: 'Arrheton', fee: 'FREE' },
@@ -42,8 +42,15 @@ const workshops = [
   { id: 'W_PULMO', feeValue: 599, timeSlot: '20NOV', name: 'Pulmonology (AERION)', fee: '₹599' }
 ]
 
-// TODO: PASTE YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL HERE
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyz3LkxYf6sNoWRxQDKM1Bvkskxt8ubjqUUG5k3zv4zkuzVwA6uzWFBHp4QCwreBKD3kQ/exec";
+
+// Helper to format date for display (handles both single days and arrays)
+const formatDate = (timeSlot) => {
+  if (Array.isArray(timeSlot)) {
+    return timeSlot.map(ts => ts === '19NOV' ? '19th Nov' : '20th Nov').join(' & ');
+  }
+  return timeSlot === '19NOV' ? '19th Nov' : '20th Nov';
+};
 
 export default function Registration() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -57,38 +64,42 @@ export default function Registration() {
   })
 
   const [selectedItems, setSelectedItems] = useState({
-    activeEvent: null,
+    activeEvents: [],
     passiveEvents: [],
     workshops: []
   })
 
-  // Helper to check if a timeSlot is already taken by ANY selected item (Enforces 1 per day rule)
-  const isTimeSlotTaken = (timeSlot) => {
-    if (!timeSlot) return false
-    if (selectedItems.activeEvent && selectedItems.activeEvent.timeSlot === timeSlot) return true
-    if (selectedItems.passiveEvents.some(e => e.timeSlot === timeSlot)) return true
-    if (selectedItems.workshops.some(w => w.timeSlot === timeSlot)) return true
-    return false
-  }
+  // --- SMART VALIDATION LOGIC ---
+  // Gets a Set of all days that already have a PAID event selected
+  const getSelectedPaidEventDays = () => {
+    const days = new Set();
+    selectedItems.activeEvents.forEach(e => {
+      if (e.feeValue > 0) {
+        (Array.isArray(e.timeSlot) ? e.timeSlot : [e.timeSlot]).forEach(d => days.add(d));
+      }
+    });
+    selectedItems.passiveEvents.forEach(e => {
+      if (e.feeValue > 0) {
+        (Array.isArray(e.timeSlot) ? e.timeSlot : [e.timeSlot]).forEach(d => days.add(d));
+      }
+    });
+    return days;
+  };
 
-  // Calculate subtotal before tax (base registration + selected activities)
+  const getWorkshopCountForDay = (timeSlot) => {
+    return selectedItems.workshops.filter(w => w.timeSlot === timeSlot).length;
+  };
+
   const calculateSubtotal = () => {
-    let subtotal = 899 // Base fest & food fee
-    if (selectedItems.activeEvent) subtotal += selectedItems.activeEvent.feeValue
-    selectedItems.passiveEvents.forEach(e => subtotal += e.feeValue)
-    selectedItems.workshops.forEach(w => subtotal += w.feeValue)
-    return subtotal
+    let subtotal = 899;
+    selectedItems.activeEvents.forEach(e => subtotal += e.feeValue);
+    selectedItems.passiveEvents.forEach(e => subtotal += e.feeValue);
+    selectedItems.workshops.forEach(w => subtotal += w.feeValue);
+    return subtotal;
   }
 
-  // Apply 2% tax to the complete subtotal and round to 2 decimal places
-  const calculateTax = () => {
-    return Math.round(calculateSubtotal() * 0.02 * 100) / 100
-  }
-
-  // Final amount payable, including tax
-  const calculateTotal = () => {
-    return Math.round((calculateSubtotal() + calculateTax()) * 100) / 100
-  }
+  const calculateTax = () => Math.round(calculateSubtotal() * 0.02 * 100) / 100;
+  const calculateTotal = () => Math.round((calculateSubtotal() + calculateTax()) * 100) / 100;
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -100,110 +111,121 @@ export default function Registration() {
     }
   }
 
-  
-const handleActiveEventSelect = (event) => {
-  setSelectedItems((prev) => {
-    // If the same event is tapped again, deselect it
-    if (prev.activeEvent?.id === event.id) {
-      return {
+  const handleActiveEventToggle = (event) => {
+    const isSelected = selectedItems.activeEvents.some(e => e.id === event.id);
+    if (isSelected) {
+      setSelectedItems(prev => ({
         ...prev,
-        activeEvent: null
+        activeEvents: prev.activeEvents.filter(e => e.id !== event.id)
+      }));
+    } else {
+      // Free events can be selected unlimited times
+      if (event.feeValue > 0) {
+        const eventDays = Array.isArray(event.timeSlot) ? event.timeSlot : [event.timeSlot];
+        const selectedDays = getSelectedPaidEventDays();
+        const conflictingDays = eventDays.filter(day => selectedDays.has(day));
+
+        if (conflictingDays.length > 0) {
+          const dayNames = conflictingDays.map(d => formatDate(d)).join(' and ');
+          toast.error(`You already have a paid event on ${dayNames}. You can only select 1 paid event per day.`);
+          return;
+        }
       }
+      setSelectedItems(prev => ({
+        ...prev,
+        activeEvents: [...prev.activeEvents, event]
+      }));
     }
-
-    // Check whether another activity occupies this day
-      const isTaken =
-        prev.activeEvent?.timeSlot === event.timeSlot ||
-        prev.passiveEvents.some(e => e.timeSlot === event.timeSlot) ||
-        prev.workshops.some(w => w.timeSlot === event.timeSlot)
-
-      if (isTaken) {
-        toast.error(
-          `You already have an activity scheduled for this day (${event.timeSlot}). You can only choose 1 activity per day.`
-        )
-        return prev
-      }
-
-      // Select the newly tapped event
-      return {
-        ...prev,
-        activeEvent: event
-      }
-    })
   }
 
   const handlePassiveEventToggle = (event) => {
-    const isSelected = selectedItems.passiveEvents.some(e => e.id === event.id)
+    const isSelected = selectedItems.passiveEvents.some(e => e.id === event.id);
     if (isSelected) {
-      setSelectedItems({ ...selectedItems, passiveEvents: selectedItems.passiveEvents.filter(e => e.id !== event.id) })
+      setSelectedItems(prev => ({
+        ...prev,
+        passiveEvents: prev.passiveEvents.filter(e => e.id !== event.id)
+      }));
     } else {
-      if (isTimeSlotTaken(event.timeSlot)) {
-        toast.error(`You already have an activity scheduled for this day (${event.timeSlot}). You can only choose 1 activity per day.`)
-        return
+      if (event.feeValue > 0) {
+        const eventDays = Array.isArray(event.timeSlot) ? event.timeSlot : [event.timeSlot];
+        const selectedDays = getSelectedPaidEventDays();
+        const conflictingDays = eventDays.filter(day => selectedDays.has(day));
+
+        if (conflictingDays.length > 0) {
+          const dayNames = conflictingDays.map(d => formatDate(d)).join(' and ');
+          toast.error(`You already have a paid event on ${dayNames}. You can only select 1 paid event per day.`);
+          return;
+        }
       }
-      setSelectedItems({ ...selectedItems, passiveEvents: [...selectedItems.passiveEvents, event] })
+      setSelectedItems(prev => ({
+        ...prev,
+        passiveEvents: [...prev.passiveEvents, event]
+      }));
     }
   }
 
   const handleWorkshopToggle = (workshop) => {
-    const isSelected = selectedItems.workshops.some(w => w.id === workshop.id)
+    const isSelected = selectedItems.workshops.some(w => w.id === workshop.id);
     if (isSelected) {
-      setSelectedItems({ ...selectedItems, workshops: selectedItems.workshops.filter(w => w.id !== workshop.id) })
+      setSelectedItems(prev => ({
+        ...prev,
+        workshops: prev.workshops.filter(w => w.id !== workshop.id)
+      }));
     } else {
-      if (isTimeSlotTaken(workshop.timeSlot)) {
-        toast.error(`You already have an activity scheduled for this day (${workshop.timeSlot}). You can only choose 1 activity per day.`)
-        return
+      if (getWorkshopCountForDay(workshop.timeSlot) >= 1) {
+        toast.error(`You can only select 1 workshop per day. You already have one on ${formatDate(workshop.timeSlot)}.`);
+        return;
       }
-      setSelectedItems({ ...selectedItems, workshops: [...selectedItems.workshops, workshop] })
+      setSelectedItems(prev => ({
+        ...prev,
+        workshops: [...prev.workshops, workshop]
+      }));
     }
   }
 
   const validateStep1 = () => {
     if (!formData.name || !formData.email || !formData.phone || !formData.bloodGroup || !formData.collegeName) {
-      toast.error("Please fill in all personal details.")
-      return false
+      toast.error("Please fill in all personal details.");
+      return false;
     }
     if (!/^\d{10}$/.test(formData.phone)) {
-      toast.error("Please enter a valid 10-digit phone number.")
-      return false
+      toast.error("Please enter a valid 10-digit phone number.");
+      return false;
     }
-    return true
+    return true;
   }
 
   const handleNext = () => {
-    if (step === 1 && validateStep1()) setStep(2)
-    else if (step === 2) setStep(3) // REMOVED mandatory active event validation
-    else if (step === 3) setStep(4)
+    if (step === 1 && validateStep1()) setStep(2);
+    else if (step === 2) setStep(3);
+    else if (step === 3) setStep(4);
   }
 
   const handleBack = () => {
-    if (step > 1) setStep(step - 1)
+    if (step > 1) setStep(step - 1);
   }
 
-  // --- GOOGLE APPS SCRIPT INTEGRATION ---
   const handleSubmitRegistration = () => {
     if (!formData.utrNumber.trim()) {
-      toast.error("Please enter your UTR / Transaction ID.")
-      return
+      toast.error("Please enter your UTR / Transaction ID.");
+      return;
     }
     if (!formData.screenshotFile) {
-      toast.error("Please upload your payment screenshot.")
-      return
+      toast.error("Please upload your payment screenshot.");
+      return;
     }
 
-    setIsProcessing(true)
+    setIsProcessing(true);
 
-    // Convert image to Base64
-    const reader = new FileReader()
+    const reader = new FileReader();
     reader.onloadend = () => {
-      const base64String = reader.result
+      const base64String = reader.result;
 
-      // Format selected items for the sheet/email
       const itemsList = [
-        selectedItems.activeEvent ? `${selectedItems.activeEvent.name} (Active)` : null,
+        ...selectedItems.activeEvents.map(e => `${e.name} (Active)`),
         ...selectedItems.passiveEvents.map(e => `${e.name} (Passive)`),
         ...selectedItems.workshops.map(w => w.name)
-      ].filter(Boolean).join(', ')
+      ].join(', ') || "Base Registration Only";
 
       const payload = {
         name: formData.name,
@@ -212,17 +234,16 @@ const handleActiveEventSelect = (event) => {
         bloodGroup: formData.bloodGroup,
         college: formData.collegeName,
         foodPreference: formData.foodPreference,
-        selectedItems: itemsList || "Base Registration Only",
+        selectedItems: itemsList,
         subtotal: calculateSubtotal(),
         taxRate: 2,
         taxAmount: calculateTax(),
-        totalAmount: calculateTotal(), // Final amount including 2% tax
+        totalAmount: calculateTotal(),
         utrNumber: formData.utrNumber,
         screenshotBase64: base64String,
         screenshotName: formData.screenshotFile.name
-      }
+      };
 
-      // Send to Google Apps Script
       fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -231,30 +252,30 @@ const handleActiveEventSelect = (event) => {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          setGeneratedRegId(data.registrationId)
-          setStep(5) // Move to Success Screen
-          toast.success("Registration submitted successfully!")
+          setGeneratedRegId(data.registrationId);
+          setStep(5);
+          toast.success("Registration submitted successfully!");
         } else {
-          toast.error("Submission failed. Please try again.")
-          setIsProcessing(false)
+          toast.error("Submission failed. Please try again.");
+          setIsProcessing(false);
         }
       })
       .catch(error => {
-        console.error('Error:', error)
-        toast.error("Network error. Please check your connection.")
-        setIsProcessing(false)
-      })
-    }
-    reader.readAsDataURL(formData.screenshotFile)
+        console.error('Error:', error);
+        toast.error("Network error. Please check your connection.");
+        setIsProcessing(false);
+      });
+    };
+    reader.readAsDataURL(formData.screenshotFile);
   }
 
   const resetForm = () => {
-    setStep(1)
-    setIsProcessing(false)
-    setGeneratedRegId('')
-    setFormData({ name: '', email: '', phone: '', bloodGroup: '', collegeName: '', foodPreference: 'VEG', utrNumber: '', screenshotFile: null })
-    setSelectedItems({ activeEvent: null, passiveEvents: [], workshops: [] })
-    setIsModalOpen(false)
+    setStep(1);
+    setIsProcessing(false);
+    setGeneratedRegId('');
+    setFormData({ name: '', email: '', phone: '', bloodGroup: '', collegeName: '', foodPreference: 'VEG', utrNumber: '', screenshotFile: null });
+    setSelectedItems({ activeEvents: [], passiveEvents: [], workshops: [] });
+    setIsModalOpen(false);
   }
 
   return (
@@ -291,7 +312,6 @@ const handleActiveEventSelect = (event) => {
               </svg>
             </button>
 
-            {/* Progress Indicator */}
             <div className="reg-progress-bar">
               {[1, 2, 3, 4].map((num, idx) => (
                 <React.Fragment key={num}>
@@ -329,7 +349,6 @@ const handleActiveEventSelect = (event) => {
                     <label>College / Institution Name *</label>
                     <input type="text" name="collegeName" value={formData.collegeName} onChange={handleInputChange} placeholder="MNR Medical College" />
                   </div>
-                  
                   <div className="form-group full-width">
                     <label>Food Preference *</label>
                     <div className="food-toggle">
@@ -351,51 +370,67 @@ const handleActiveEventSelect = (event) => {
               <div className="reg-step">
                 <h3 className="reg-step-title">Select Events & Workshops</h3>
                 <p style={{textAlign: 'center', color: '#f0a500', fontSize: '0.9rem', marginBottom: '1.5rem'}}>
-                  <i className="fas fa-info-circle"></i> Rule: You can only select a maximum of 1 activity per day (across all categories).
+                  <i className="fas fa-info-circle"></i> Rule: Max 1 paid event + 1 workshop per day. Free events are unlimited.
                 </p>
                 
+                {/* 1. WORKSHOPS */}
                 <div className="reg-selection-block">
-                  <h4><i className="fas fa-trophy"></i> Active Events (Subject to daily limit)</h4>
-                  <div className="reg-options-grid">
-                    {activeEvents.map(event => {
-                      const isSelected = selectedItems.activeEvent?.id === event.id
-                      const isDisabled = !isSelected && isTimeSlotTaken(event.timeSlot)
-                      return (
-                        <div key={event.id} className={`reg-option-card ${isSelected ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}`} onClick={() => !isDisabled && handleActiveEventSelect(event)}>
-                          <span className="reg-option-name">{event.name}</span>
-                          <span className="reg-option-fee">{event.feeValue === 0 ? 'FREE' : `₹${event.feeValue}`}</span>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-
-                <div className="reg-selection-block">
-                  <h4><i className="fas fa-star"></i> Passive Events (Subject to daily limit)</h4>
-                  <div className="reg-options-grid">
-                    {passiveEvents.map(event => {
-                      const isSelected = selectedItems.passiveEvents.some(e => e.id === event.id)
-                      const isDisabled = !isSelected && isTimeSlotTaken(event.timeSlot)
-                      return (
-                        <div key={event.id} className={`reg-option-card ${isSelected ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}`} onClick={() => !isDisabled && handlePassiveEventToggle(event)}>
-                          <span className="reg-option-name">{event.name}</span>
-                          <span className="reg-option-fee">{event.feeValue === 0 ? 'FREE' : `₹${event.feeValue}`}</span>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-
-                <div className="reg-selection-block">
-                  <h4><i className="fas fa-tools"></i> Workshops (Subject to daily limit)</h4>
+                  <h4><i className="fas fa-tools"></i> Workshops (Max 1 per day)</h4>
                   <div className="reg-options-grid">
                     {workshops.map(w => {
-                      const isSelected = selectedItems.workshops.some(sel => sel.id === w.id)
-                      const isDisabled = !isSelected && isTimeSlotTaken(w.timeSlot)
+                      const isSelected = selectedItems.workshops.some(sel => sel.id === w.id);
+                      const isDisabled = !isSelected && getWorkshopCountForDay(w.timeSlot) >= 1;
                       return (
                         <div key={w.id} className={`reg-option-card ${isSelected ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}`} onClick={() => !isDisabled && handleWorkshopToggle(w)}>
                           <span className="reg-option-name">{w.name}</span>
+                          <span style={{ fontSize: '0.7rem', color: '#a0a0c0', marginTop: '2px' }}>{formatDate(w.timeSlot)}</span>
                           <span className="reg-option-fee">₹{w.feeValue}</span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                {/* 2. ACTIVE EVENTS */}
+                <div className="reg-selection-block">
+                  <h4><i className="fas fa-trophy"></i> Active Events</h4>
+                  <div className="reg-options-grid">
+                    {activeEvents.map(event => {
+                      const isSelected = selectedItems.activeEvents.some(e => e.id === event.id);
+                      const isDisabled = !isSelected && event.feeValue > 0 && (() => {
+                        const eventDays = Array.isArray(event.timeSlot) ? event.timeSlot : [event.timeSlot];
+                        const selectedDays = getSelectedPaidEventDays();
+                        return eventDays.some(day => selectedDays.has(day));
+                      })();
+                      
+                      return (
+                        <div key={event.id} className={`reg-option-card ${isSelected ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}`} onClick={() => !isDisabled && handleActiveEventToggle(event)}>
+                          <span className="reg-option-name">{event.name}</span>
+                          <span style={{ fontSize: '0.7rem', color: '#a0a0c0', marginTop: '2px' }}>{formatDate(event.timeSlot)}</span>
+                          <span className="reg-option-fee">{event.feeValue === 0 ? 'FREE' : `₹${event.feeValue}`}</span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                {/* 3. PASSIVE EVENTS */}
+                <div className="reg-selection-block">
+                  <h4><i className="fas fa-star"></i> Passive Events</h4>
+                  <div className="reg-options-grid">
+                    {passiveEvents.map(event => {
+                      const isSelected = selectedItems.passiveEvents.some(e => e.id === event.id);
+                      const isDisabled = !isSelected && event.feeValue > 0 && (() => {
+                        const eventDays = Array.isArray(event.timeSlot) ? event.timeSlot : [event.timeSlot];
+                        const selectedDays = getSelectedPaidEventDays();
+                        return eventDays.some(day => selectedDays.has(day));
+                      })();
+
+                      return (
+                        <div key={event.id} className={`reg-option-card ${isSelected ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}`} onClick={() => !isDisabled && handlePassiveEventToggle(event)}>
+                          <span className="reg-option-name">{event.name}</span>
+                          <span style={{ fontSize: '0.7rem', color: '#a0a0c0', marginTop: '2px' }}>{formatDate(event.timeSlot)}</span>
+                          <span className="reg-option-fee">{event.feeValue === 0 ? 'FREE' : `₹${event.feeValue}`}</span>
                         </div>
                       )
                     })}
@@ -414,21 +449,21 @@ const handleActiveEventSelect = (event) => {
               <div className="reg-step">
                 <h3 className="reg-step-title">Order Summary</h3>
                 <div className="reg-summary-box">
-                  <div className="reg-summary-row"><span>Base Fest Registration & Food</span><span>₹899</span></div>
-                  {selectedItems.activeEvent && (
-                    <div className="reg-summary-row"><span>{selectedItems.activeEvent.name} (Active)</span><span>₹{selectedItems.activeEvent.feeValue}</span></div>
-                  )}
+                  <div className="reg-summary-row"><span>Base Fest Registration & Food</span><span>₹899.00</span></div>
+                  {selectedItems.activeEvents.map(e => (
+                    <div key={e.id} className="reg-summary-row"><span>{e.name} (Active)</span><span>₹{e.feeValue}.00</span></div>
+                  ))}
                   {selectedItems.passiveEvents.map(e => (
-                    <div key={e.id} className="reg-summary-row"><span>{e.name} (Passive)</span><span>₹{e.feeValue}</span></div>
+                    <div key={e.id} className="reg-summary-row"><span>{e.name} (Passive)</span><span>₹{e.feeValue}.00</span></div>
                   ))}
                   {selectedItems.workshops.map(w => (
-                    <div key={w.id} className="reg-summary-row"><span>{w.name}</span><span>₹{w.feeValue}</span></div>
+                    <div key={w.id} className="reg-summary-row"><span>{w.name}</span><span>₹{w.feeValue}.00</span></div>
                   ))}
-                  <div className="reg-summary-row">
+                  <div className="reg-summary-row" style={{borderTop: '1px solid rgba(255,255,255,0.1)', marginTop: '0.5rem', paddingTop: '0.5rem'}}>
                     <span>Subtotal</span><span>₹{calculateSubtotal().toFixed(2)}</span>
                   </div>
                   <div className="reg-summary-row">
-                    <span>Platform Fee</span><span>₹{calculateTax().toFixed(2)}</span>
+                    <span>Platform Fee (2%)</span><span>₹{calculateTax().toFixed(2)}</span>
                   </div>
                   <div className="reg-summary-total">
                     <span>Final Amount Payable</span><span>₹{calculateTotal().toFixed(2)}</span>
@@ -449,12 +484,9 @@ const handleActiveEventSelect = (event) => {
                 <h3 className="reg-step-title">Payment & Verification</h3>
                 <div className="payment-details-box">
                   <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                    
-                    {/* --- DYNAMIC QR CODE START --- */}
                     {(() => {
                       const totalAmount = calculateTotal().toFixed(2);
                       const upiLink = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(PAYEE_NAME)}&am=${totalAmount}&cu=INR&tn=Aadvidya26Reg`;
-                      
                       return (
                         <>
                           <QRCodeSVG 
@@ -472,8 +504,6 @@ const handleActiveEventSelect = (event) => {
                         </>
                       );
                     })()}
-                    {/* --- DYNAMIC QR CODE END --- */}
-
                   </div>
                   
                   <div className="bank-details">
@@ -499,7 +529,6 @@ const handleActiveEventSelect = (event) => {
                         style={{background: '#0a0a1a', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', padding: '0.8rem', borderRadius: '0.5rem', width: '100%'}}
                       />
                     </div>
-
                     <div className="form-group full-width" style={{margin: 0}}>
                       <label>Upload Payment Screenshot *</label>
                       <input 
