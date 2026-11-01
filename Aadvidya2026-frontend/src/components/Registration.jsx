@@ -350,7 +350,7 @@ export default function Registration() {
                     <input type="text" name="collegeName" value={formData.collegeName} onChange={handleInputChange} placeholder="MNR Medical College" />
                   </div>
                   <div className="form-group full-width">
-                    <label>Food Preference *</label>
+                    <label>Food Preference: On 19th Nov, only Vegetarian food will be provided. Please select your preferred option for 20th Nov.*</label>
                     <div className="food-toggle">
                       <button type="button" className={formData.foodPreference === 'VEG' ? 'active' : ''} onClick={() => setFormData({...formData, foodPreference: 'VEG'})}>
                         <i className="fas fa-leaf"></i> Vegetarian (Both Days)
