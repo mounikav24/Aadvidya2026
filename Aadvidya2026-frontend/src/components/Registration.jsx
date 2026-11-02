@@ -59,7 +59,7 @@ export default function Registration() {
   const [generatedRegId, setGeneratedRegId] = useState('')
   
   const [formData, setFormData] = useState({
-    name: '', email: '', phone: '', bloodGroup: '', collegeName: '', foodPreference: 'VEG',
+    name: '', email: '', phone: '', bloodGroup: '', collegeName: '', batch: '', foodPreference: 'VEG',
     utrNumber: '', screenshotFile: null
   })
 
@@ -233,6 +233,7 @@ export default function Registration() {
         phone: formData.phone,
         bloodGroup: formData.bloodGroup,
         college: formData.collegeName,
+        batch: formData.batch,
         foodPreference: formData.foodPreference,
         selectedItems: itemsList,
         subtotal: calculateSubtotal(),
@@ -273,7 +274,7 @@ export default function Registration() {
     setStep(1);
     setIsProcessing(false);
     setGeneratedRegId('');
-    setFormData({ name: '', email: '', phone: '', bloodGroup: '', collegeName: '', foodPreference: 'VEG', utrNumber: '', screenshotFile: null });
+    setFormData({ name: '', email: '', phone: '', bloodGroup: '', collegeName: '', batch: '', foodPreference: 'VEG', utrNumber: '', screenshotFile: null });
     setSelectedItems({ activeEvents: [], passiveEvents: [], workshops: [] });
     setIsModalOpen(false);
   }
@@ -348,6 +349,15 @@ export default function Registration() {
                   <div className="form-group full-width">
                     <label>College / Institution Name *</label>
                     <input type="text" name="collegeName" value={formData.collegeName} onChange={handleInputChange} placeholder="MNR Medical College" />
+                  </div>
+                  <div className="form-group">
+                    <label>Batch (Year of Study/Graduation) *</label>
+                    <select name="batch" value={formData.batch} onChange={handleInputChange}>
+                      <option value="">Select Batch</option>
+                      {['2020', '2021', '2022', '2023', '2024', '2025', '2026'].map(year => (
+                        <option key={year} value={year}>{year}</option>
+                      ))}
+                    </select>
                   </div>
                   <div className="form-group full-width">
                     <label>Food Preference: On 19th Nov, only Vegetarian food will be provided. Please select your preferred option for 20th Nov.*</label>
