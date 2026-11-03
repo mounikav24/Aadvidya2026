@@ -7,7 +7,6 @@ const UPI_ID = "8309915874@upi";
 const PAYEE_NAME = "BODAPATLA VIJAY KANTH";
 
 // --- DATA WITH ID, FEEVALUE, AND TIMESLOT FOR VALIDATION ---
-// Note: Events happening on BOTH days now have timeSlot as an array: ['19NOV', '20NOV']
 const activeEvents = [
   { id: 'E_SYMPTOMA', feeValue: 199, timeSlot: ['19NOV', '20NOV'], name: 'Symptoma', sub: 'Case Presentation', fee: '₹199' },
   { id: 'E_HEPHAESTUS', feeValue: 199, timeSlot: ['19NOV', '20NOV'], name: 'Hephaestus', sub: '3D Model Making', fee: '₹199' },
@@ -25,8 +24,8 @@ const passiveEvents = [
   { id: 'E_TABOO', feeValue: 0, timeSlot: '20NOV', name: 'Medical Taboo', sub: 'Word Game', fee: 'FREE' },
   { id: 'E_JAM', feeValue: 0, timeSlot: '19NOV', name: 'Just a Minute', sub: 'Arrheton', fee: 'FREE' },
   { id: 'E_SPELL', feeValue: 0, timeSlot: '20NOV', name: 'Spell Bee', sub: 'Gelorthography', fee: 'FREE' },
-  { id: 'E_WORD', feeValue: 0, timeSlot: '20NOV', name: 'Word Scramble', sub: 'Lexis', fee: 'FREE' },
-  { id: 'E_CROSS', feeValue: 0, timeSlot: '20NOV', name: 'Med Crossword', sub: 'Syndesis', fee: 'FREE' },
+  { id: 'E_WORD', feeValue: 0, timeSlot: '19NOV', name: 'Word Scramble', sub: 'Lexis', fee: 'FREE' },
+  { id: 'E_CROSS', feeValue: 0, timeSlot: '19NOV', name: 'Med Crossword', sub: 'Syndesis', fee: 'FREE' },
   { id: 'E_DUMB', feeValue: 0, timeSlot: '20NOV', name: 'Med Dumbcharades', sub: 'Mimesis', fee: 'FREE' },
   { id: 'E_WRONG', feeValue: 0, timeSlot: '19NOV', name: 'Wrong Answers Only', sub: 'Creative Chaos', fee: 'FREE' }
 ]
@@ -44,7 +43,6 @@ const workshops = [
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzynEW3u__9uRX_b4Z6o9jKz18MZxwtMleqNA_cvJtb37VE8pAI4127HS9x5SuPxRRCcA/exec";
 
-// Helper to format date for display (handles both single days and arrays)
 const formatDate = (timeSlot) => {
   if (Array.isArray(timeSlot)) {
     return timeSlot.map(ts => ts === '19NOV' ? '19th Nov' : '20th Nov').join(' & ');
@@ -69,8 +67,14 @@ export default function Registration() {
     workshops: []
   })
 
+  // --- NEW: Check if ANY workshop is selected on 20th Nov ---
+  const hasWorkshopOn20th = () => {
+    return selectedItems.workshops.some(w => 
+      Array.isArray(w.timeSlot) ? w.timeSlot.includes('20NOV') : w.timeSlot === '20NOV'
+    );
+  };
+
   // --- SMART VALIDATION LOGIC ---
-  // Gets a Set of all days that already have a PAID event selected
   const getSelectedPaidEventDays = () => {
     const days = new Set();
     selectedItems.activeEvents.forEach(e => {
@@ -119,6 +123,12 @@ export default function Registration() {
         activeEvents: prev.activeEvents.filter(e => e.id !== event.id)
       }));
     } else {
+      // NEW: Block ALL active events if a 20th workshop is selected
+      if (hasWorkshopOn20th()) {
+        toast.error("You have selected a workshop on 20th Nov. All Active Events are disabled.");
+        return;
+      }
+
       // Free events can be selected unlimited times
       if (event.feeValue > 0) {
         const eventDays = Array.isArray(event.timeSlot) ? event.timeSlot : [event.timeSlot];
@@ -146,8 +156,14 @@ export default function Registration() {
         passiveEvents: prev.passiveEvents.filter(e => e.id !== event.id)
       }));
     } else {
+      // Check if workshop on 20th blocks this specific passive event
+      const eventDays = Array.isArray(event.timeSlot) ? event.timeSlot : [event.timeSlot];
+      if (eventDays.includes('20NOV') && hasWorkshopOn20th()) {
+        toast.error("You have selected a workshop on 20th Nov. Events on 20th Nov are not available.");
+        return;
+      }
+
       if (event.feeValue > 0) {
-        const eventDays = Array.isArray(event.timeSlot) ? event.timeSlot : [event.timeSlot];
         const selectedDays = getSelectedPaidEventDays();
         const conflictingDays = eventDays.filter(day => selectedDays.has(day));
 
@@ -176,6 +192,19 @@ export default function Registration() {
         toast.error(`You can only select 1 workshop per day. You already have one on ${formatDate(workshop.timeSlot)}.`);
         return;
       }
+
+      // NEW: If selecting a 20th workshop, auto-remove any selected Active Events to prevent invalid state
+      const is20thWorkshop = Array.isArray(workshop.timeSlot) ? workshop.timeSlot.includes('20NOV') : workshop.timeSlot === '20NOV';
+      if (is20thWorkshop && selectedItems.activeEvents.length > 0) {
+        toast.error("Selecting a 20th Nov workshop disables all Active Events. Your selected Active Event has been removed.");
+        setSelectedItems(prev => ({
+          ...prev,
+          activeEvents: [], // Auto-deselect active events
+          workshops: [...prev.workshops, workshop]
+        }));
+        return;
+      }
+
       setSelectedItems(prev => ({
         ...prev,
         workshops: [...prev.workshops, workshop]
@@ -184,8 +213,8 @@ export default function Registration() {
   }
 
   const validateStep1 = () => {
-    if (!formData.name || !formData.email || !formData.phone || !formData.bloodGroup || !formData.collegeName) {
-      toast.error("Please fill in all personal details.");
+    if (!formData.name || !formData.email || !formData.phone || !formData.bloodGroup || !formData.collegeName || !formData.batch) {
+      toast.error("Please fill in all personal details, including your Batch.");
       return false;
     }
     if (!/^\d{10}$/.test(formData.phone)) {
@@ -407,11 +436,16 @@ export default function Registration() {
                   <div className="reg-options-grid">
                     {activeEvents.map(event => {
                       const isSelected = selectedItems.activeEvents.some(e => e.id === event.id);
-                      const isDisabled = !isSelected && event.feeValue > 0 && (() => {
-                        const eventDays = Array.isArray(event.timeSlot) ? event.timeSlot : [event.timeSlot];
-                        const selectedDays = getSelectedPaidEventDays();
-                        return eventDays.some(day => selectedDays.has(day));
-                      })();
+                      const eventDays = Array.isArray(event.timeSlot) ? event.timeSlot : [event.timeSlot];
+                      
+                      // NEW: Disable ALL active events (19th and 20th) if a 20th workshop is selected
+                      const isDisabled = !isSelected && (
+                        hasWorkshopOn20th() || 
+                        (event.feeValue > 0 && (() => {
+                          const selectedDays = getSelectedPaidEventDays();
+                          return eventDays.some(day => selectedDays.has(day));
+                        })())
+                      );
                       
                       return (
                         <div key={event.id} className={`reg-option-card ${isSelected ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}`} onClick={() => !isDisabled && handleActiveEventToggle(event)}>
@@ -430,11 +464,17 @@ export default function Registration() {
                   <div className="reg-options-grid">
                     {passiveEvents.map(event => {
                       const isSelected = selectedItems.passiveEvents.some(e => e.id === event.id);
-                      const isDisabled = !isSelected && event.feeValue > 0 && (() => {
-                        const eventDays = Array.isArray(event.timeSlot) ? event.timeSlot : [event.timeSlot];
-                        const selectedDays = getSelectedPaidEventDays();
-                        return eventDays.some(day => selectedDays.has(day));
-                      })();
+                      const eventDays = Array.isArray(event.timeSlot) ? event.timeSlot : [event.timeSlot];
+                      const isOn20th = eventDays.includes('20NOV');
+                      
+                      // Only 20th passive events are disabled by a 20th workshop
+                      const isDisabled = !isSelected && (
+                        (isOn20th && hasWorkshopOn20th()) || 
+                        (event.feeValue > 0 && (() => {
+                          const selectedDays = getSelectedPaidEventDays();
+                          return eventDays.some(day => selectedDays.has(day));
+                        })())
+                      );
 
                       return (
                         <div key={event.id} className={`reg-option-card ${isSelected ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}`} onClick={() => !isDisabled && handlePassiveEventToggle(event)}>
