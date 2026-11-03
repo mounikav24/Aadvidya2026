@@ -42,7 +42,7 @@ const workshops = [
   { id: 'W_PULMO', feeValue: 599, timeSlot: '20NOV', name: 'Pulmonology (AERION)', fee: '₹599' }
 ]
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyeQAtpWHjuC_8lZxzbl4QXy0UzkyKucx2tac6vE-tWt7bkiqx-IgM1cDC5pIm0uHFu_A/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzynEW3u__9uRX_b4Z6o9jKz18MZxwtMleqNA_cvJtb37VE8pAI4127HS9x5SuPxRRCcA/exec";
 
 // Helper to format date for display (handles both single days and arrays)
 const formatDate = (timeSlot) => {
