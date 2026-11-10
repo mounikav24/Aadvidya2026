@@ -3,8 +3,8 @@ import toast, { Toaster } from 'react-hot-toast'
 import { QRCodeSVG } from 'qrcode.react'
 
 // --- PAYMENT CONFIGURATION ---
-const UPI_ID = "8309915874@upi"; 
-const PAYEE_NAME = "BODAPATLA VIJAY KANTH";
+const UPI_ID = "7981732747-2@axl"; 
+const PAYEE_NAME = "VENGALA MOUNIKA";
 
 // --- DATA WITH ID, FEEVALUE, AND TIMESLOT FOR VALIDATION ---
 const activeEvents = [
