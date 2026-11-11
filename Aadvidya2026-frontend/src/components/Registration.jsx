@@ -436,11 +436,33 @@ export default function Registration() {
                   <div className="reg-options-grid">
                     {workshops.map(w => {
                       const isSelected = selectedItems.workshops.some(sel => sel.id === w.id);
-                      const isDisabled = !isSelected && getWorkshopCountForDay(w.timeSlot) >= 1;
+                      const isDisabledByRule = !isSelected && getWorkshopCountForDay(w.timeSlot) >= 1;
+                      
+                      // 🚨 NEW: Check live availability from the state
+                      const isSoldOut = availability[w.name]?.isFull;
+                      const currentSlots = availability[w.name]?.current || 0;
+                      const maxSlots = availability[w.name]?.max || 0;
+                      const isFullyDisabled = isDisabledByRule || isSoldOut;
+
                       return (
-                        <div key={w.id} className={`reg-option-card ${isSelected ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}`} onClick={() => !isDisabled && handleWorkshopToggle(w)}>
+                        <div 
+                          key={w.id} 
+                          className={`reg-option-card ${isSelected ? 'selected' : ''} ${isFullyDisabled ? 'disabled' : ''}`} 
+                          onClick={() => !isFullyDisabled && handleWorkshopToggle(w)}
+                          style={{ position: 'relative', opacity: isSoldOut ? 0.6 : 1 }}
+                        >
                           <span className="reg-option-name">{w.name}</span>
                           <span style={{ fontSize: '0.7rem', color: '#a0a0c0', marginTop: '2px' }}>{formatDate(w.timeSlot)}</span>
+                          
+                          {/* 🚨 NEW: Slot indicator or Sold Out badge */}
+                          {isLoadingAvailability ? (
+                            <span style={{ fontSize: '0.7rem', color: '#f0a500' }}>Loading...</span>
+                          ) : isSoldOut ? (
+                            <span style={{ fontSize: '0.75rem', color: '#ef4444', fontWeight: 'bold', backgroundColor: 'rgba(239, 68, 68, 0.1)', padding: '2px 6px', borderRadius: '4px' }}>SOLD OUT</span>
+                          ) : (
+                            <span style={{ fontSize: '0.75rem', color: '#22c55e', fontWeight: 'bold' }}>{currentSlots}/{maxSlots}</span>
+                          )}
+                          
                           <span className="reg-option-fee">₹{w.feeValue}</span>
                         </div>
                       )
