@@ -460,7 +460,7 @@ export default function Registration() {
                           ) : isSoldOut ? (
                             <span style={{ fontSize: '0.75rem', color: '#ef4444', fontWeight: 'bold', backgroundColor: 'rgba(239, 68, 68, 0.1)', padding: '2px 6px', borderRadius: '4px' }}>SOLD OUT</span>
                           ) : (
-                            <span style={{ fontSize: '0.75rem', color: '#22c55e', fontWeight: 'bold' }}>{currentSlots}/{maxSlots}</span>
+                            <span style={{ fontSize: '0.75rem', color: '#22c55e', fontWeight: 'bold' }}>{maxSlots - currentSlots} slots left</span>
                           )}
                           
                           <span className="reg-option-fee">₹{w.feeValue}</span>
