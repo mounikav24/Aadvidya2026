@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { QRCodeSVG } from 'qrcode.react'
 
@@ -67,6 +67,24 @@ export default function Registration() {
     workshops: []
   })
 
+  // 🚨 NEW: State for Workshop Availability
+  const [availability, setAvailability] = useState({});
+  const [isLoadingAvailability, setIsLoadingAvailability] = useState(true);
+
+  // 🚨 NEW: Fetch live workshop availability on page load
+  useEffect(() => {
+    fetch(GOOGLE_SCRIPT_URL) 
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) setAvailability(data.availability);
+        setIsLoadingAvailability(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch availability", err);
+        setIsLoadingAvailability(false);
+      });
+  }, []);
+  
   // --- NEW: Check if ANY workshop is selected on 20th Nov ---
   const hasWorkshopOn20th = () => {
     return selectedItems.workshops.some(w => 
