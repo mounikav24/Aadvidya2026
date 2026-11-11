@@ -41,7 +41,7 @@ const workshops = [
   { id: 'W_PULMO', feeValue: 599, timeSlot: '20NOV', name: 'Pulmonology (AERION)', fee: '₹599' }
 ]
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxUEOaJ2GKNIzWHw-xuelJPU71PvjK1adtEcXrK8AJYqH2eZB8B_LTzDyiN_PK9G3Jf/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSqKDTsCbVji-0rqWr8a9HPklMsHiw0GZIaJxbf0hIThQxY8Q1_tbUfzSshH7a_aU8mw/exec";
 
 const formatDate = (timeSlot) => {
   if (Array.isArray(timeSlot)) {
